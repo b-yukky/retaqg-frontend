@@ -97,7 +97,7 @@ module.exports = {
     // ESLint plugin vue
     'vue/block-tag-newline': 'error',
     'vue/component-api-style': 'error',
-    'vue/component-name-in-template-casing': ['error', 'PascalCase', { registeredComponentsOnly: false }],
+    'vue/component-name-in-template-casing': ['error', 'PascalCase' | 'kebab-case', { registeredComponentsOnly: false }],
     'vue/custom-event-name-casing': ['error', 'camelCase', {
       ignores: [
         '/^(click):[a-z]+((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?/',
@@ -109,6 +109,15 @@ module.exports = {
     'vue/html-comment-indent': 'error',
     'vue/match-component-file-name': 'error',
     'vue/no-child-content': 'error',
+
+    'vue/max-attributes-per-line': ['error', {
+      singleline: {
+        max: 3,
+      },
+      multiline: {
+        max: 1,
+      },
+    }],
 
     // NOTE this rule only supported in SFC,  Users of the unplugin-vue-define-options should disable that rule: https://github.com/vuejs/eslint-plugin-vue/issues/1886
     // 'vue/no-duplicate-attr-inheritance': 'error',
@@ -131,8 +140,8 @@ module.exports = {
     'sonarjs/no-duplicate-string': 'off',
 
     // Internal Rules
-    'valid-appcardcode-code-prop': 'error',
-    'valid-appcardcode-demo-sfc': 'error',
+    // 'valid-appcardcode-code-prop': 'error',
+    // 'valid-appcardcode-demo-sfc': 'error',
   },
   settings: {
     'import/resolver': {

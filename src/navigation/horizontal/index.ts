@@ -11,4 +11,9 @@ export default [
     to: { name: 'second-page' },
     icon: { icon: 'mdi-file-document-outline' },
   },
+  {
+    title: 'Test',
+    to: { name: 'table-test' },
+    icon: { icon: 'mdi-file-document-outline' },
+  },
 ] as HorizontalNavItems

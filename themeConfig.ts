@@ -12,7 +12,7 @@ import { AppContentLayoutNav, ContentWidth, FooterType, NavbarType } from '@layo
 
 export const { themeConfig, layoutConfig } = defineThemeConfig({
   app: {
-    title: 'Materio',
+    title: 'Retaqg',
     logo: h('div', { innerHTML: logo, class: 'text-primary', style: 'line-height:0' }),
     contentWidth: ContentWidth.Boxed,
     contentLayoutNav: AppContentLayoutNav.Vertical,

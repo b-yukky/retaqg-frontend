@@ -2,13 +2,23 @@ import type { VerticalNavItems } from '@/@layouts/types'
 
 export default [
   {
-    title: 'Home',
-    to: { name: 'index' },
-    icon: { icon: 'mdi-home-outline' },
+    title: 'Search Questions',
+    to: { name: 'search' },
+    icon: { icon: 'mdi-magnify' },
   },
   {
-    title: 'Second page',
-    to: { name: 'second-page' },
+    title: 'Generate MCQ',
+    to: { name: 'generate' },
+    icon: { icon: 'mdi-format-list-group-plus' },
+  },
+  {
+    title: 'Evaluate MCQ',
+    to: { name: 'evaluate' },
+    icon: { icon: 'mdi-account-star' },
+  },
+  {
+    title: 'Other',
+    to: { name: 'other' },
     icon: { icon: 'mdi-file-document-outline' },
   },
 ] as VerticalNavItems
