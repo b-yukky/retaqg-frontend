@@ -35,7 +35,13 @@ const sendEvaluation = () => {
     loading.value = false
     nextQuestionId.value = response.data.id
     router.replace({path: `/evaluate/${nextQuestionId.value}`})
-  }).catch(e => { console.log(e); loading.value = false})
+  }).catch(e => {
+    loading.value = false
+    console.log('erroor next aval', e)
+    if (e.request.status == 404)
+      router.push({path: '/evaluate'})
+      router.go(0)
+  })
 }
 
 </script>
