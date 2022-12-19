@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import router from '@/router'
-router.push({path: '/search'});
+router.push({path: '/search'})
 
 </script>
 

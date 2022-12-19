@@ -63,7 +63,7 @@ const getQuestionsFromParagraph = (params: any) => {
   const paragraph_id = selectedRows[0].id
   displayParagraphText.value = selectedRows[0].text
   loadingQuestion.value = true
-  api.get(`question/detail/${paragraph_id}`).then(
+  api.get(`question/detail/paragraph/${paragraph_id}`).then(
     response => {
       questions.value = response.data
       loadingQuestion.value = false

@@ -7,6 +7,8 @@ import { shuffle } from '@core/utils/operations'
 
 const props = defineProps(['questions'])
 
+const openedPanels = ref<number[]>([])
+
 const createChoices = (question: Question) => {
     if (isNullOrUndefined(question.choices)) {
       console.log(question.choices)
@@ -15,16 +17,28 @@ const createChoices = (question: Question) => {
       question.choices.push({ text: question.answer, is_answer: true})
       question.choices = shuffle(question.choices)
     }
+    console.log(openedPanels.value)
   }
+
+onMounted(() => {
+  createChoices(props.questions[0])
+  openedPanels.value = [0]
+})
 
 </script>
 
 <template>
   <div>
-      <VExpansionPanels multiple>
+      <VExpansionPanels
+        v-if="!isNullOrUndefined(props.questions)"
+        multiple 
+        v-model="openedPanels"
+        >
         <VExpansionPanel
           v-for="question in props.questions"
-          :key="question.id">
+          :key="question.id"
+          v-model="openedPanels"
+          >
           <VExpansionPanelTitle @click="createChoices(question)"> {{ question.text }} 
             <v-spacer></v-spacer>
             <VChip class="ml-2"> {{ question.status }}</VChip>

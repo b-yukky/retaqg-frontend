@@ -1,4 +1,16 @@
 <script setup lang="ts">
+import router from '@/router'
+import axios from '@axios'
+
+const loading = ref<boolean>(false)
+
+const startEvaluation = () => {
+  loading.value = true
+  axios.get('question/evaluation/select/').then(response => {
+    loading.value = false
+    router.push({path: `/evaluate/${response.data.id}`})
+  }).catch(e => { console.log(e) })
+}
 
 </script>
 
@@ -10,8 +22,8 @@
     >
 
       <v-card-text>
+        Some questions will be presented to you.
 
-        
       </v-card-text>
 
       <v-card-actions>
@@ -20,12 +32,12 @@
         outlined
         tile
         x-large
+        @click="startEvaluation"
         >
       Start
       <v-icon x-large>mdi-play</v-icon>
       </VBtn>
       </v-card-actions>
-
 
     </VCard>
   </div>

@@ -34,4 +34,11 @@ export interface Question {
   choices: Choice[]
 }
 
-
+export interface Evaluation {
+  id: number
+  relevance: number
+  acceptability: boolean
+  difficulty: number
+  question_id: number
+  user: number
+}
