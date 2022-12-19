@@ -2,18 +2,8 @@ import type { HorizontalNavItems } from '@layouts/types'
 
 export default [
   {
-    title: 'Home',
-    to: { name: 'index' },
-    icon: { icon: 'mdi-home-outline' },
-  },
-  {
-    title: 'Second page',
-    to: { name: 'second-page' },
-    icon: { icon: 'mdi-file-document-outline' },
-  },
-  {
-    title: 'Test',
-    to: { name: 'table-test' },
-    icon: { icon: 'mdi-file-document-outline' },
+    title: 'Evaluate MCQ',
+    to: { name: 'evaluate' },
+    icon: { icon: 'mdi-account-star' },
   },
 ] as HorizontalNavItems

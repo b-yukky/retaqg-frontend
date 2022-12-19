@@ -1,4 +1,5 @@
 <script lang="ts">
+
 export default defineComponent({
   setup() {
     const routerView = resolveComponent('router-view')
@@ -8,7 +9,10 @@ export default defineComponent({
 })
 </script>
 
-<style>
+
+<style lang="scss">
+// As we are using `layouts` plugin we need its styles to be imported
+
 .layout-wrapper.layout-blank {
   flex-direction: column;
 }

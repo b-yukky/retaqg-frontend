@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+import { useThemeConfig } from '@core/composable/useThemeConfig'
 import DefaultLayoutWithHorizontalNav from './components/DefaultLayoutWithHorizontalNav.vue'
 import DefaultLayoutWithVerticalNav from './components/DefaultLayoutWithVerticalNav.vue'
-import { useThemeConfig } from '@core/composable/useThemeConfig'
 
 // @layouts plugin
 import { AppContentLayoutNav } from '@layouts/enums'

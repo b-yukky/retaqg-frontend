@@ -1,10 +1,10 @@
 
 <script setup lang="ts">
 
+import QuestionsPanels from '@/components/QuestionsPanels.vue'
 import type { Paragraph, Question } from '@/types'
 import api from '@axios'
 import { isEmptyArray, isNullOrUndefined } from '@core/utils/index'
-import { shuffle } from '@core/utils/operations'
 import "ag-grid-community/styles/ag-grid.css"
 import "ag-grid-community/styles/ag-theme-material.css"
 import { AgGridVue } from 'ag-grid-vue3'
@@ -14,6 +14,7 @@ defineComponent({
   name: 'searchComponent'
 })
 
+const questions = ref<Question[]>([])
 const paragraphs = ref<Paragraph[]>([])
 const loadingQuestion = ref(false)
 const loadingParagraphs = ref(false)
@@ -24,9 +25,9 @@ const onGridReady = (params: any) => {
   gridApi.value = params.api
 }
 const onFirstDataRendered = (params: any) => {
-  const allColumnIds: any = [];
+  const allColumnIds: any = []
   params.columnApi.getColumns().forEach((column: any) => {
-    allColumnIds.push(column.getId());
+    allColumnIds.push(column.getId())
   })
   params.columnApi.autoSizeColumns(allColumnIds, false)
   params.api.sizeColumnsToFit()
@@ -56,7 +57,6 @@ const defaultColDef = {
   resizable: true,
   flex: 1
 }
-const questions = ref<Question[]>([])
 
 const getQuestionsFromParagraph = (params: any) => {
   const selectedRows = params.api.getSelectedRows()
@@ -69,15 +69,6 @@ const getQuestionsFromParagraph = (params: any) => {
       loadingQuestion.value = false
     }).catch(e => { console.log(e) } )
 }
-const createChoices = (question: Question) => {
-  if (isNullOrUndefined(question.choices))
-    console.log(question.choices)
-    question.choices = []
-    question.distractors.forEach((distractor) => question.choices.push({ text: distractor.text, is_answer: false}))
-    question.choices.push({ text: question.answer, is_answer: true})
-    question.choices = shuffle(question.choices)
-  }
-
 
 
 </script>
@@ -128,32 +119,8 @@ const createChoices = (question: Question) => {
         color="primary"
       ></v-progress-linear>
       <VCardSubtitle v-if="isEmptyArray(questions) && !loadingQuestion"> Select a paragraph to display associated questions.</VCardSubtitle>
-      <VExpansionPanels multiple>
-        <VExpansionPanel
-          v-for="question in questions"
-          :key="question.id">
-          <VExpansionPanelTitle @click="createChoices(question)"> {{ question.text }} 
-            <v-spacer></v-spacer>
-            <VChip class="ml-2"> {{ question.status }}</VChip>
-            <VChip class="mx-2"> {{ question.model.name }}</VChip>
-          </VExpansionPanelTitle>
-          <VExpansionPanelText>
-            <VList>
-              <VListItem :class="choice.is_answer == true ? 'green' : ''" v-for="choice in question.choices" 
-                :key="choice.text" 
-                :value="choice.text">
-                <template #prepend>
-                  <VIcon
-                    icon="mdi-record-circle-outline"
-                    class="me-3"
-                  />
-                </template>
-                  <span class="text-red !important"> {{ choice.text }}</span>
-              </VListItem>
-            </VList>
-          </VExpansionPanelText>
-        </VExpansionPanel>
-      </VExpansionPanels>
+      <QuestionsPanels v-if="!isEmptyArray(questions) && !isNullOrUndefined(questions)" :questions="questions"></QuestionsPanels>
+
     </VCard>
   </div>
 </template>

@@ -28,7 +28,7 @@ injectSkinClasses()
     <!-- 👉 navbar -->
     <template #navbar>
       <RouterLink
-        to="/"
+        to="/evaluate"
         class="d-flex align-center gap-x-3"
       >
         <VNodeRenderer :nodes="themeConfig.app.logo" />
@@ -62,7 +62,5 @@ injectSkinClasses()
       <Footer />
     </template>
 
-    <!-- 👉 Customizer -->
-    <!-- <TheCustomizer /> -->
   </HorizontalNavLayout>
 </template>
