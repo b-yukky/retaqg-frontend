@@ -42,3 +42,8 @@ export interface Evaluation {
   question_id: number
   user: number
 }
+
+export interface User {
+  username: string
+  password: string
+}

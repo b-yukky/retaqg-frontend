@@ -36,7 +36,6 @@ onMounted(() => {
       <v-row>
         <v-col cols="12">
           <VCard 
-            class="mb-6"
             title="Context Paragraph 📄"
             fluid
             >
@@ -58,7 +57,6 @@ onMounted(() => {
 
         <v-col cols="12">
           <VCard 
-            class="mb-6"
             title="Question ❓"
             fluid
           >
@@ -69,7 +67,6 @@ onMounted(() => {
 
         <v-col cols="12">
           <VCard 
-            class="mb-6"
             title="Evaluation ✍️"
             fluid
           >

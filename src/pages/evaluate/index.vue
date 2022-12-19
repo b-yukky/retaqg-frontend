@@ -1,15 +1,22 @@
 <script setup lang="ts">
 import router from '@/router'
-import axios from '@axios'
+import { isUserLoggedIn } from '@/router/utils'
+import api from '@axios'
 
 const loading = ref<boolean>(false)
 
+
 const startEvaluation = () => {
   loading.value = true
-  axios.get('question/evaluation/select/').then(response => {
+  if (isUserLoggedIn()) {
+    api.get('question/evaluation/select/').then(response => {
     loading.value = false
     router.push({path: `/evaluate/${response.data.id}`})
   }).catch(e => { console.log(e) })
+  } else {
+    console.log(isUserLoggedIn())
+    router.push({path: '/login', replace: true})
+  }
 }
 
 </script>

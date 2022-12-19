@@ -3,13 +3,18 @@
  * This is completely up to you and how you want to store the token in your frontend application
  * e.g. If you are using cookies to store the application please update this function
  */
-export const isUserLoggedIn = () => !!(localStorage.getItem('userData') && localStorage.getItem('accessToken'))
 
 export const getUserData = () => {
-  const stringifiedUserData = localStorage.getItem('userData')
+  const stringifiedUserData = localStorage.getItem('user')
 
   return stringifiedUserData ? JSON.parse(stringifiedUserData) : null
 }
+
+export const isUserLoggedIn = () => {
+  const user = getUserData()
+  return user ? true : false
+}
+
 
 /**
  * This function is used for demo purpose route navigation

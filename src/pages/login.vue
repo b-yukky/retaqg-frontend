@@ -1,163 +1,95 @@
 <script setup lang="ts">
-import tree from '@/assets/images/pages/tree.png'
-import AuthProvider from '@/views/pages/authentication/AuthProvider.vue'
-import { useGenerateImageVariant } from '@core/composable/useGenerateImageVariant'
-import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
-import { themeConfig } from '@themeConfig'
+import { requiredValidator } from '@/@core/utils/validators'
+import router from '@/router'
+import AuthService from '@/services/auth.service'
+import type { User } from '@/types'
 
-import authV2LoginIllustrationBorderedDark from '@/assets/images/pages/auth-v2-login-illustration-bordered-dark.png'
-import authV2LoginIllustrationBorderedLight from '@/assets/images/pages/auth-v2-login-illustration-bordered-light.png'
-import authV2LoginIllustrationDark from '@/assets/images/pages/auth-v2-login-illustration-dark.png'
-import authV2LoginIllustrationLight from '@/assets/images/pages/auth-v2-login-illustration-light.png'
-import authV2MaskDark from '@/assets/images/pages/auth-v2-mask-dark.png'
-import authV2MaskLight from '@/assets/images/pages/auth-v2-mask-light.png'
-const form = ref({
-  email: '',
-  password: '',
-  remember: false,
-})
+const loading = ref<boolean>(false)
+const dialog = ref<boolean>(true)
+const user = ref<User>({username: '', password: ''})
+const showPassword = ref<boolean>(false)
+const errorMessage = ref('')
+const login = () => {
+  loading.value = true
+  AuthService.login(user.value).then((response) => {
+    console.log(response)
+    loading.value  = false
+    router.push({path: '/evaluate', replace: true})
+  }).catch(e => { errorMessage.value = e.response.data.detail; loading.value  =false})
+}
 
-const isPasswordVisible = ref(false)
-
-const authThemeImg = useGenerateImageVariant(authV2LoginIllustrationLight, authV2LoginIllustrationDark, authV2LoginIllustrationBorderedLight, authV2LoginIllustrationBorderedDark, true)
-
-const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
 </script>
 
 <template>
-  <div>
-    <!-- Title and Logo -->
-    <div class="auth-logo d-flex align-start gap-x-3">
-      <VNodeRenderer :nodes="themeConfig.app.logo" />
-
-      <h1 class="font-weight-semibold leading-normal text-2xl text-uppercase">
-        {{ themeConfig.app.title }}
-      </h1>
-    </div>
-
-    <VRow
-      no-gutters
-      class="auth-wrapper"
+  <div class="d-flex justify-md-center">
+    <v-row justify="center">
+    <v-dialog
+      v-model="dialog"
+      persistent
+      max-width="490"
     >
-      <VCol
-        lg="8"
-        class="d-none d-lg-flex align-center justify-center position-relative"
-      >
-        <VImg
-          max-width="768px"
-          :src="authThemeImg"
-          class="auth-illustration"
-        />
-        <VImg
-          :width="276"
-          :src="tree"
-          class="auth-footer-start-tree"
-        />
-        <VImg
-          class="auth-footer-mask"
-          :src="authThemeMask"
-        />
-      </VCol>
 
-      <VCol
-        cols="12"
-        lg="4"
-        class="auth-bg d-flex align-center justify-center"
-      >
-        <VCard
-          flat
-          :max-width="500"
-          class="mt-12 mt-sm-0 pa-4"
-        >
-          <VCardText>
-            <h5 class="text-h5 font-weight-semibold mb-1">
-              Welcome to {{ themeConfig.app.title }}! 👋🏻
-            </h5>
-            <p class="mb-0">
-              Please sign-in to your account and start the adventure
-            </p>
-          </VCardText>
-          <VCardText>
-            <VForm @submit.prevent="() => {}">
-              <VRow>
-                <!-- email -->
-                <VCol cols="12">
-                  <VTextField
-                    v-model="form.email"
-                    label="Email"
-                    type="email"
-                  />
-                </VCol>
-
-                <!-- password -->
-                <VCol cols="12">
-                  <VTextField
-                    v-model="form.password"
-                    label="Password"
-                    :type="isPasswordVisible ? 'text' : 'password'"
-                    :append-inner-icon="isPasswordVisible ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
-                    @click:append-inner="isPasswordVisible = !isPasswordVisible"
-                  />
-
-                  <div class="d-flex align-center flex-wrap justify-space-between mt-1 mb-4">
-                    <VCheckbox
-                      v-model="form.remember"
-                      label="Remember me"
-                    />
-                    <a href="#" class="text-primary ms-2 mb-1">
-                      Forgot Password?
-                    </a>
-                  </div>
-
-                  <VBtn
-                    block
-                    type="submit"
-                  >
-                    Login
-                  </VBtn>
-                </VCol>
-
-                <!-- create account -->
-                <VCol
-                  cols="12"
-                  class="text-center"
-                >
-                  <span>New on our platform?</span>
-                  <a href="#" class="text-primary ms-2">
-                    Create an account
-                  </a>
-                </VCol>
-
-                <VCol
-                  cols="12"
-                  class="d-flex align-center"
-                >
-                  <VDivider />
-                  <span class="mx-4">or</span>
-                  <VDivider />
-                </VCol>
-
-                <!-- auth providers -->
-                <VCol
-                  cols="12"
-                  class="text-center"
-                >
-                  <AuthProvider />
-                </VCol>
-              </VRow>
-            </VForm>
-          </VCardText>
-        </VCard>
-      </VCol>
-    </VRow>
+      <v-card>
+        <v-card-title class="text-h5">
+          Please login to continue
+        </v-card-title>
+        <v-card-text>
+          <v-row>
+            <v-col cols="11">
+              <v-text-field
+                v-model="user.username"
+                :rules="[requiredValidator]"
+                name="input-10-1"
+                label="Username"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12">
+              <v-text-field
+                v-model="user.password"
+                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                :rules="[requiredValidator]"
+                :type="showPassword ? 'text' : 'password'"
+                name="input-10-1"
+                label="Password"
+                @click:append="showPassword = !showPassword"
+              ></v-text-field>
+            </v-col>
+            <v-col>
+              <v-alert v-if="errorMessage" outlined type="error" dense > {{ errorMessage }} </v-alert>
+            </v-col>
+          </v-row>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="router.push('/evaluate')"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="login"
+          >
+            Log in
+          </v-btn>
+        </v-card-actions>
+        <v-progress-linear
+        :active="loading"
+        indeterminate
+        color="primary"
+      ></v-progress-linear>
+      </v-card>
+    </v-dialog>
+  </v-row>
   </div>
 </template>
 
-<style lang="scss">
-@use "@core/scss/pages/page-auth.scss";
-</style>
+
 
 <route lang="yaml">
-meta:
-  layout: blank
+  meta:
+    layout: evaluation
 </route>
