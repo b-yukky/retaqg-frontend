@@ -11,7 +11,6 @@ const props = defineProps(['question'])
 const openedPanels = ref<number[]>([])
 const loading = ref<boolean>(false)
 const questionEvaluation = ref<Evaluation>()
-const questionEvaluationId = ref<number>(0)
 const nextQuestionId = ref<number>(0)
 
 const acceptabilityTooltip = ref('Tick the checkbox if you judge the question as acceptable, satisfactory, tolerable for self-studying on this paragraph.')
@@ -22,15 +21,12 @@ onMounted(() => {
   api.get(`evaluation/question/${props.question.id}`).then( response => {
     loading.value = false
     questionEvaluation.value = response.data
-    questionEvaluationId.value = response.data.id
   }).catch(e => { console.log(e); loading.value = false })
 })
 
 const sendEvaluation = () => {
   loading.value = true
-  if (questionEvaluationId.value == null)
-    questionEvaluationId.value = 0
-  api.put(`evaluation/${questionEvaluationId.value}`, questionEvaluation.value).then( response => {
+  api.put(`evaluation/`, questionEvaluation.value).then( response => {
     loading.value = false
     if (response.status == 200) {
       nextQuestionId.value = response.data.id
