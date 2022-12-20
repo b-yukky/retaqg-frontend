@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import router from '@/router'
 import { isUserLoggedIn } from '@/router/utils'
+import { useAuthStore } from '@/stores/auth'
 import api from '@axios'
 
 const loading = ref<boolean>(false)
 
 const noEvaluationsMessage = ref(false)
+const authStore = useAuthStore()
 
 const startEvaluation = () => {
   loading.value = true

@@ -1,12 +1,12 @@
+import TokenService from '@/services/tokenService'
 import axiosInstance from '@axios'
-
 
 const setup = (authStore) => {
 
   axiosInstance.interceptors.request.use(
     (config) => {
 
-      const token = authStore.accessToken
+      const token = TokenService.getLocalAccessToken()
       
       if (token) {
         // config.headers["Authorization"] = 'Bearer ' + token  // for Spring Boot back-end
@@ -30,13 +30,12 @@ const setup = (authStore) => {
 
       if (originalConfig.url !== 'auth/login/' && err.response) {
         // Access Token was expired
-        console.log(err.response)
 
         if (err.response.status === 401 && !originalConfig._retry) {
           originalConfig._retry = true
           try {
             const rs = await axiosInstance.post('auth/token/refresh/', {
-              refresh: authStore.refreshToken
+              refresh: TokenService.getLocalRefreshToken()
             })
 
             const accessToken = rs.data.access

@@ -2,22 +2,18 @@
 import { isEmptyArray, isNullOrUndefined } from '@/@core/utils'
 import router from '@/router'
 import { useAuthStore } from '@/stores/auth'
-const authStore = useAuthStore()
 
-const userInfo = computed(() => {
-  return authStore.user
-})
+const authStore = useAuthStore()
+const { user } = storeToRefs(authStore)
 
 const toLoginPage = () => {
-  if (isNullOrUndefined(userInfo))
-    console.log('go to login', userInfo)
+  if (isNullOrUndefined(user.value))
     router.replace('/login')
 }
 
 const logout = () => {
   authStore.logout()
   router.replace('/evaluate')
-  router.go(0)
 }
 
 </script>
@@ -28,27 +24,27 @@ const logout = () => {
     location="bottom right"
     offset-x="3"
     offset-y="3"
-    :color="userInfo ? 'success' : 'error'"
+    :color="user ? 'success' : 'error'"
     @click="toLoginPage"
     
   >
     <v-chip
       link
       label
-      :color="userInfo ? 'primary': 'default'"
+      :color="user ? 'primary': 'default'"
       
-    >{{ userInfo ? userInfo.username : 'Login' }}
+    >{{ user ? user.username : 'Login' }}
 
       <!-- SECTION Menu -->
       <VMenu
-        v-if="!isNullOrUndefined(userInfo)"
+        v-if="!isNullOrUndefined(user)"
         activator="parent"
         width="230"
         location="bottom end"
         offset="14px"
       >
         <VList>
-          <!-- 👉 User Avatar & Name -->
+          <!-- 👉 user Avatar & Name -->
           <VListItem>
             <template #prepend>
               <VListItemAction start>
@@ -57,9 +53,9 @@ const logout = () => {
             </template>
 
             <VListItemTitle class="font-weight-semibold">
-              {{ userInfo.username }}
+              {{ user.username }}
             </VListItemTitle>
-            <VListItemSubtitle v-if="!isEmptyArray(userInfo.groups)"> {{ userInfo.groups  }}</VListItemSubtitle>
+            <VListItemSubtitle v-if="!isEmptyArray(user.groups)"> {{ user.groups  }}</VListItemSubtitle>
           </VListItem>
           <VDivider class="my-2" />
 

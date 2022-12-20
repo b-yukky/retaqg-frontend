@@ -22,7 +22,7 @@ const login = () => {
   authStore.login(user.value).then((response)=> {
     loading.value  = false
     router.replace({path: '/evaluate'})
-  }).catch(e => { errorMessage.value = e.response.data.detail; loading.value  =false})
+  }).catch(e => { console.log(e); errorMessage.value = e.detail; loading.value = false})
 }
 
 </script>
