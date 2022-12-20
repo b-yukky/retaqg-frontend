@@ -11,16 +11,14 @@ const startEvaluation = () => {
   loading.value = true
   if (isUserLoggedIn()) {
     api.get('question/evaluation/select/').then(response => {
-    loading.value = false
-    router.push({path: `/evaluate/${response.data.id}`})
-  }).catch(e => {
-    loading.value = false
-    if (e.request.status == 404)
-      noEvaluationsMessage.value = true
-    console.log(e) 
-  })
+      loading.value = false
+      if (response.status == 200) {
+        router.push({path: `/evaluate/${response.data.id}`})
+      } else {
+        noEvaluationsMessage.value = true
+      }
+  }).catch(e => { loading.value = false })
   } else {
-    console.log(isUserLoggedIn())
     router.replace({path: '/login'})
   }
 }

@@ -1,5 +1,25 @@
 <script setup lang="ts">
-import avatar1 from '@/assets/images/avatars/avatar-1.png';
+import { isEmptyArray, isNullOrUndefined } from '@/@core/utils'
+import router from '@/router'
+import TokenService from '@/services/tokenService'
+
+const userInfo = computed(() =>{
+  return TokenService.getUser()
+})
+
+const login = () => {
+  if (isNullOrUndefined(userInfo))
+    console.log('go to login', userInfo)
+    router.replace('/login')
+}
+
+const logout = () => {
+  TokenService.removeUser()
+  router.replace('/evaluate')
+  router.go(0)
+}
+
+
 </script>
 
 <template>
@@ -8,17 +28,20 @@ import avatar1 from '@/assets/images/avatars/avatar-1.png';
     location="bottom right"
     offset-x="3"
     offset-y="3"
-    color="success"
+    :color="userInfo ? 'success' : 'error'"
+    @click="login"
+    
   >
-    <VAvatar
-      class="cursor-pointer"
-      color="primary"
-      variant="tonal"
-    >
-      <VImg :src="avatar1" />
+    <v-chip
+      link
+      label
+      :color="userInfo ? 'primary': 'default'"
+      
+    >{{ userInfo ? userInfo.username : 'Login' }}
 
       <!-- SECTION Menu -->
       <VMenu
+        v-if="!isNullOrUndefined(userInfo)"
         activator="parent"
         width="230"
         location="bottom end"
@@ -29,32 +52,19 @@ import avatar1 from '@/assets/images/avatars/avatar-1.png';
           <VListItem>
             <template #prepend>
               <VListItemAction start>
-                <VBadge
-                  dot
-                  location="bottom right"
-                  offset-x="3"
-                  offset-y="3"
-                  color="success"
-                >
-                  <VAvatar
-                    color="primary"
-                    variant="tonal"
-                  >
-                    <VImg :src="avatar1" />
-                  </VAvatar>
-                </VBadge>
+                
               </VListItemAction>
             </template>
 
             <VListItemTitle class="font-weight-semibold">
-              Bryan Djafer
+              {{ userInfo.username }}
             </VListItemTitle>
-            <VListItemSubtitle>Admin</VListItemSubtitle>
+            <VListItemSubtitle v-if="!isEmptyArray(userInfo.groups)"> {{ userInfo.groups  }}</VListItemSubtitle>
           </VListItem>
           <VDivider class="my-2" />
 
           <!-- 👉 Profile -->
-          <VListItem link>
+          <VListItem link disabled>
             <template #prepend>
               <VIcon
                 class="me-2"
@@ -67,7 +77,7 @@ import avatar1 from '@/assets/images/avatars/avatar-1.png';
           </VListItem>
 
           <!-- 👉 Settings -->
-          <VListItem link>
+          <VListItem link disabled>
             <template #prepend>
               <VIcon
                 class="me-2"
@@ -83,7 +93,7 @@ import avatar1 from '@/assets/images/avatars/avatar-1.png';
           <VDivider class="my-2" />
 
           <!-- 👉 Logout -->
-          <VListItem to="/login">
+          <VListItem @click="logout">
             <template #prepend>
               <VIcon
                 class="me-2"
@@ -97,6 +107,6 @@ import avatar1 from '@/assets/images/avatars/avatar-1.png';
         </VList>
       </VMenu>
       <!-- !SECTION -->
-    </VAvatar>
+    </v-chip>
   </VBadge>
 </template>

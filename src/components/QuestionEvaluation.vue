@@ -31,17 +31,14 @@ const sendEvaluation = () => {
   if (questionEvaluationId.value == null)
     questionEvaluationId.value = 0
   api.put(`evaluation/${questionEvaluationId.value}`, questionEvaluation.value).then( response => {
-    console.log(response.data)
     loading.value = false
-    nextQuestionId.value = response.data.id
-    router.replace({path: `/evaluate/${nextQuestionId.value}`})
-  }).catch(e => {
-    loading.value = false
-    console.log('erroor next aval', e)
-    if (e.request.status == 404)
-      router.push({path: '/evaluate'})
-      router.go(0)
-  })
+    if (response.status == 200) {
+      nextQuestionId.value = response.data.id
+      router.replace({path: `/evaluate/${nextQuestionId.value}`})
+    } else {
+      router.replace({path: '/evaluate'})
+    }
+  }).catch(e => { loading.value = false })
 }
 
 </script>

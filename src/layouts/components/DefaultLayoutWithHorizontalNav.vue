@@ -39,9 +39,8 @@ injectSkinClasses()
       </RouterLink>
 
       <VSpacer />
-
-      <NavbarThemeSwitcher class="me-2" />
       <UserProfile />
+      <NavbarThemeSwitcher class="me-2 ml-4" />
     </template>
 
     <!-- 👉 Pages -->
@@ -52,7 +51,7 @@ injectSkinClasses()
       >
         <Component
           :is="Component"
-          :key="route.path"
+          :key="route.fullPath"
         />
       </Transition>
     </RouterView>

@@ -14,7 +14,7 @@ const login = () => {
   AuthService.login(user.value).then((response) => {
     console.log(response)
     loading.value  = false
-    router.push({path: '/evaluate', replace: true})
+    router.replace({path: '/evaluate'})
   }).catch(e => { errorMessage.value = e.response.data.detail; loading.value  =false})
 }
 
@@ -27,6 +27,7 @@ const login = () => {
       v-model="dialog"
       persistent
       max-width="490"
+      scroll-strategy="none"
     >
 
       <v-card>

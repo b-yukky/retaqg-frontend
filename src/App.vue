@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useThemeConfig } from '@core/composable/useThemeConfig'
 const { syncInitialLoaderTheme, syncVuetifyThemeWithTheme: syncConfigThemeWithVuetifyTheme, isAppRtl } = useThemeConfig()
-
 // ℹ️ Sync current theme with initial loader theme
 syncInitialLoaderTheme()
 syncConfigThemeWithVuetifyTheme()
