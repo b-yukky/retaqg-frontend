@@ -39,6 +39,7 @@ export interface Evaluation {
   relevance: number
   acceptability: boolean
   difficulty: number
+  choices_quality: number
   question_id: number
   user: number
 }

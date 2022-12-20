@@ -13,6 +13,30 @@ const loading = ref<boolean>(false)
 const questionEvaluation = ref<Evaluation>()
 const nextQuestionId = ref<number>(0)
 
+const tickLabelsDifficulty = ref({
+  0: 'Self-evident',
+  1: 'Easy',
+  2: 'Medium',
+  3: 'Hard',
+  4: 'Impossible',
+})
+
+const tickLabelsRelevance = ref({
+  0: 'Irrelevant',
+  1: 'Bad',
+  2: 'Tolerable',
+  3: 'Good',
+  4: 'Very relevant',
+})
+
+const tickLabelsChoices = ref({
+  0: 'Terrible',
+  1: 'Confused',
+  2: 'Tolerable',
+  3: 'Suitable',
+  4: 'Ideal',
+})
+
 const acceptabilityTooltip = ref('Tick the checkbox if you judge the question as acceptable, satisfactory, tolerable for self-studying on this paragraph.')
 
 onMounted(() => {
@@ -47,52 +71,87 @@ const sendEvaluation = () => {
         color="primary"
       ></v-progress-linear>
       <div v-if="!isNullOrUndefined(questionEvaluation)" class="d-flex flex-column">
-        <span class="ml-3 mb-2"> {{ acceptabilityTooltip }}</span>
-        <div class="d-flex mx-3 justify-space-between">
-          <div class="d-flex">
-            <v-badge dot color="success">
+        <div class="d-flex ma-3">
+          <div class="align-self-center">
+              <v-badge dot color="success">
                 <v-chip
                   label
                   outlined
                   color="success"
+                  :style="{ 'width': '120px'}"
                 > Acceptability
                 </v-chip>
               </v-badge>
-              <div class="ml-3">
-                <v-checkbox v-model="questionEvaluation.acceptability" color="success"></v-checkbox>
-              </div>
-          </div>
+            </div>
+            <div>
+              <v-radio-group class="ml-5" inline v-model="questionEvaluation.acceptability" >
+                <v-radio :value="false" color="error">
+                  <template v-slot:label>
+                    <span><strong class="text-red"> Not acceptable </strong></span>
+                  </template>
+                </v-radio>
+                <v-radio :value="true" color="success">
+                  <template v-slot:label>
+                    <span><strong> Acceptable </strong></span>
+                  </template>
+                </v-radio>
+              </v-radio-group>
+            </div>
         </div>
-        
-        <div class="d-flex mx-3">
+        <div class="d-flex ma-3">
           <div class="align-self-center">
-            <v-chip label link outlined color="error" width="200"> Relevance </v-chip>
+            <v-chip label link outlined color="error" :style="{ 'width': '120px'}"> Relevance </v-chip>
           </div>
-          <div>
-            <v-rating
+          <div class="flex-grow-1">
+            <v-slider
               v-model="questionEvaluation.relevance"
-              hover
-              length="5"
+              :ticks="tickLabelsRelevance"
+              :max="4"
+              step="1"
+              show-ticks="always"
+              tick-size="4"
+              class="px-5"
               color="error"
-              size="40"
             >
-            </v-rating>
+            </v-slider>
           </div>
         </div>
 
-        <div class="d-flex mx-3">
+        <div class="d-flex ma-3">
           <div class="align-self-center">
-            <v-chip label link outlined color="primary" width="200"> Difficulty </v-chip>
+            <v-chip label link outlined color="primary" :style="{ 'width': '120px'}"> Difficulty </v-chip>
           </div>
-          <div>
-            <v-rating
+          <div class="flex-grow-1" >
+            <v-slider
               v-model="questionEvaluation.difficulty"
-              hover
-              length="5"
+              :ticks="tickLabelsDifficulty"
+              :max="4"
+              step="1"
+              show-ticks="always"
+              tick-size="4"
+              class="px-5"
               color="primary"
-              size="40"
             >
-            </v-rating>
+            </v-slider>
+          </div>
+        </div>
+
+        <div class="d-flex ma-3">
+          <div class="align-self-center">
+            <v-chip label link outlined color="info" :style="{ 'width': '120px'}"> Choices </v-chip>
+          </div>
+          <div class="flex-grow-1" >
+            <v-slider
+              v-model="questionEvaluation.choices_quality"
+              :ticks="tickLabelsChoices"
+              :max="4"
+              step="1"
+              show-ticks="always"
+              tick-size="4"
+              class="px-5"
+              color="info"
+            >
+            </v-slider>
           </div>
         </div>
 

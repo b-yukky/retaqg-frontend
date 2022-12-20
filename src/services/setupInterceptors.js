@@ -38,9 +38,11 @@ const setup = (authStore) => {
               refresh: TokenService.getLocalRefreshToken()
             })
 
+            console.log('trying to refresh', rs)
+
             const accessToken = rs.data.access
 
-            authStore.refreshToken(accessToken)
+            authStore.refreshAccessToken(accessToken)
 
             return axiosInstance(originalConfig)
 
