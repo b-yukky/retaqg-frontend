@@ -1,24 +1,24 @@
 <script setup lang="ts">
 import { isEmptyArray, isNullOrUndefined } from '@/@core/utils'
 import router from '@/router'
-import TokenService from '@/services/tokenService'
+import { useAuthStore } from '@/stores/auth'
+const authStore = useAuthStore()
 
-const userInfo = computed(() =>{
-  return TokenService.getUser()
+const userInfo = computed(() => {
+  return authStore.user
 })
 
-const login = () => {
+const toLoginPage = () => {
   if (isNullOrUndefined(userInfo))
     console.log('go to login', userInfo)
     router.replace('/login')
 }
 
 const logout = () => {
-  TokenService.removeUser()
+  authStore.logout()
   router.replace('/evaluate')
   router.go(0)
 }
-
 
 </script>
 
@@ -29,7 +29,7 @@ const logout = () => {
     offset-x="3"
     offset-y="3"
     :color="userInfo ? 'success' : 'error'"
-    @click="login"
+    @click="toLoginPage"
     
   >
     <v-chip

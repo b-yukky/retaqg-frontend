@@ -12,16 +12,20 @@ import '@/styles/tooltip.css'
 import '@core/scss/index.scss'
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
+import { useAuthStore } from './stores/auth'
 
 loadFonts()
-setupInterceptors()
 
+const pinia = createPinia()
 const app = createApp(App)
 
 app.use(vuetify)
-app.use(createPinia())
+app.use(pinia)
 app.use(router)
 app.use(layoutsPlugin)
 app.directive("tooltip", tooltip)
+
+setupInterceptors(useAuthStore())
+
 app.mount('#app')
 

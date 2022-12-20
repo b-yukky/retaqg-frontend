@@ -21,7 +21,7 @@
     "axios-mock-adapter": "~1.21.2",
     "chart.js": "~3.9.1",
     "jwt-decode": "~3.1.2",
-    "pinia": "~2.0.22",
+    "pinia": "^2.0.28",
     "prismjs": "~1.29.0",
     "sass": "~1.54.9",
     "unplugin-vue-define-options": "~0.6.2",

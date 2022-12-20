@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { requiredValidator } from '@/@core/utils/validators'
 import router from '@/router'
-import AuthService from '@/services/auth.service'
+import { useAuthStore } from '@/stores/auth'
 import type { User } from '@/types'
 
 const loading = ref<boolean>(false)
@@ -9,10 +9,17 @@ const dialog = ref<boolean>(true)
 const user = ref<User>({username: '', password: ''})
 const showPassword = ref<boolean>(false)
 const errorMessage = ref('')
+
+const authStore = useAuthStore()
+
 const login = () => {
   loading.value = true
-  AuthService.login(user.value).then((response) => {
-    console.log(response)
+  // AuthService.login(user.value).then((response) => {
+  //   console.log(response)
+  //   loading.value  = false
+  //   router.replace({path: '/evaluate'})
+  // }).catch(e => { errorMessage.value = e.response.data.detail; loading.value  =false})
+  authStore.login(user.value).then((response)=> {
     loading.value  = false
     router.replace({path: '/evaluate'})
   }).catch(e => { errorMessage.value = e.response.data.detail; loading.value  =false})

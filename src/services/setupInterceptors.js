@@ -1,11 +1,13 @@
-import TokenService from '@/services/tokenService'
 import axiosInstance from '@axios'
 
-const setup = () => {
+
+const setup = (authStore) => {
+
   axiosInstance.interceptors.request.use(
     (config) => {
-      const token = TokenService.getLocalAccessToken()
 
+      const token = authStore.accessToken
+      
       if (token) {
         // config.headers["Authorization"] = 'Bearer ' + token  // for Spring Boot back-end
         // config.headers["x-access-token"] = token // for Node.js Express back-end
@@ -34,18 +36,18 @@ const setup = () => {
           originalConfig._retry = true
           try {
             const rs = await axiosInstance.post('auth/token/refresh/', {
-              refresh: TokenService.getLocalRefreshToken()
+              refresh: authStore.refreshToken
             })
 
             const accessToken = rs.data.access
 
-            TokenService.updateLocalAccessToken(accessToken)
+            authStore.refreshToken(accessToken)
 
             return axiosInstance(originalConfig)
 
           } catch (_error) {
 
-            TokenService.removeUser()
+            authStore.logout()
 
             return Promise.reject(_error)
           }
