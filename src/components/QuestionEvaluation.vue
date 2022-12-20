@@ -142,7 +142,7 @@ const sendEvaluation = () => {
           </div>
           <div class="flex-grow-1" >
             <v-slider
-              v-model="questionEvaluation.choices_quality"
+              v-model="questionEvaluation.choices"
               :ticks="tickLabelsChoices"
               :max="4"
               step="1"
@@ -156,8 +156,16 @@ const sendEvaluation = () => {
         </div>
 
       </div>
-      <span class="mx-3">
-          <v-btn class="my-3" @click="sendEvaluation"> Send </v-btn>
-      </span>
+      <div class="ma-3" :style="{ 'text-align': 'right'}">
+          <v-btn 
+            class="my-3" 
+            @click="sendEvaluation"
+            append-icon="mdi-skip-next"
+            size="large"
+            color="primary"
+            :style="{ 'width': '200px'}"
+          > Next
+          </v-btn>
+      </div>
   </div>
 </template>

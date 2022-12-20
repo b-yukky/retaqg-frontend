@@ -39,7 +39,7 @@ export interface Evaluation {
   relevance: number
   acceptability: boolean
   difficulty: number
-  choices_quality: number
+  choices: number
   question_id: number
   user: number
 }
@@ -47,4 +47,9 @@ export interface Evaluation {
 export interface User {
   username: string
   password: string
+}
+
+export interface EvaluationStats {
+  questions_completed: number
+  questions_remaining: number
 }

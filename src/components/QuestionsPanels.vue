@@ -41,8 +41,20 @@ onMounted(() => {
           >
           <VExpansionPanelTitle @click="createChoices(question)"> {{ question.text }} 
             <v-spacer></v-spacer>
-            <VChip class="ml-2"> {{ question.status }}</VChip>
-            <VChip v-if="!isNullOrUndefined(question.model)" class="mx-2"> {{ question.model.name }}</VChip>
+            <VChip 
+              class="ml-2"
+              color="primary"
+              label
+            > {{ question.status }}
+          </VChip>
+            <VChip 
+              v-if="!isNullOrUndefined(question.model)" 
+              class="mx-2"
+              label
+              variant="outlined"
+              color="info"
+            > {{ question.model.name }}
+            </VChip>
           </VExpansionPanelTitle>
           <VExpansionPanelText>
             <VList>

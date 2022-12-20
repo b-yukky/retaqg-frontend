@@ -1,5 +1,5 @@
-import type { VuetifyOptions } from 'vuetify'
 import { themeConfig } from '@themeConfig'
+import type { VuetifyOptions } from 'vuetify'
 
 const theme: VuetifyOptions['theme'] = {
   defaultTheme: localStorage.getItem(`${themeConfig.app.title}-theme`) || themeConfig.app.theme.value,
@@ -15,7 +15,7 @@ const theme: VuetifyOptions['theme'] = {
         'warning': '#FFB400',
         'error': '#FF4C51',
         'on-primary': '#FFFFFF',
-        'on-success': '#FFFFFF',
+        'on-success': '#43ff64d9',
         'on-warning': '#FFFFFF',
         'background': '#F4F5FA',
         'on-background': '#3A3541',
@@ -53,7 +53,7 @@ const theme: VuetifyOptions['theme'] = {
         'warning': '#FFB400',
         'error': '#FF4C51',
         'on-primary': '#FFFFFF',
-        'on-success': '#FFFFFF',
+        'on-success': '#43ff64d9',
         'on-warning': '#FFFFFF',
         'background': '#28243D',
         'on-background': '#E7E3FC',

@@ -1,14 +1,19 @@
 <script setup lang="ts">
+import EvaluationSatistics from '@/components/EvaluationStatistics.vue'
 import QuestionEvaluation from '@/components/QuestionEvaluation.vue'
 import QuestionsPanels from '@/components/QuestionsPanels.vue'
-
+import router from '@/router'
 import axios from '@axios'
 import { isEmpty } from '@core/utils/index'
 import { useRoute } from 'vue-router'
+import { useDisplay } from 'vuetify'
 
 const route = useRoute()
+router.activeClass
 const question = ref()
 const loading = ref(false)
+
+const { mobile } = useDisplay()
 
 const getQuestionToEvaluate = () => {
   loading.value = true
@@ -28,34 +33,36 @@ onMounted(() => {
   getQuestionToEvaluate()
 })
 
+
+
 </script>
 
 <template>
   <div class="d-flex">
     <div class="flex-grow-1">
-      <v-row>
-        <v-col cols="12">
+      <VRow>
+        <VCol cols="12">
           <VCard 
             title="Context Paragraph 📄"
             fluid
             >
-            <v-progress-linear
+            <VProgressLinear
                 :active="loading"
                 indeterminate
                 color="primary"
-            ></v-progress-linear>
-            <v-textarea
+            ></VProgressLinear>
+            <VTextarea
               v-if="question"
               readonly
               :value="question.paragraph.text"
               class="mx-3 mb-3"
               :rows="getTextAreaRowsNumber"
             >
-            </v-textarea>
+            </VTextarea>
           </VCard>
-        </v-col>
+        </VCol>
 
-        <v-col cols="12">
+        <VCol cols="12">
           <VCard 
             title="Question ❓"
             fluid
@@ -63,9 +70,9 @@ onMounted(() => {
           <QuestionsPanels v-if="!isEmpty(question)" :questions="[question]"></QuestionsPanels>
 
           </VCard>
-        </v-col>
+        </VCol>
 
-        <v-col cols="12">
+        <VCol cols="12">
           <VCard 
             title="Evaluation ✍️"
             fluid
@@ -73,20 +80,15 @@ onMounted(() => {
           <QuestionEvaluation v-if="!isEmpty(question)" :question="question"></QuestionEvaluation>
 
           </VCard>
-        </v-col>
-
-      </v-row>
+        </VCol>
+        <VCol v-if="mobile" cols="12">
+          <EvaluationSatistics></EvaluationSatistics>
+        </VCol>
+      </VRow>
     </div>
 
-    <div>
-      <VCard 
-        class="mx-4 mb-6"
-        title="Statistics ✨"
-        fluid
-        width="300"
-        height="500"
-      >
-      </VCard>
+    <div v-if="!mobile" class="ml-5">
+      <EvaluationSatistics></EvaluationSatistics>
     </div>
     
   </div>
