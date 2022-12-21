@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import QuestionsPanels from '@/components/QuestionsPanels.vue'
-import type { Question } from '@/types'
+import type { Model, Question } from '@/types'
 import api from '@axios'
 import { isEmptyArray } from '@core/utils/index'
 
 const questions = ref<Question[]>([])
+const models = ref<Model[]>([])
+const selectedModel = ref<any>()
+const countGenerations = ref<any>(3)
+
 const inputText = ref<string>('')
 const loadingGeneration = ref<boolean>(false)
 const startTime = ref<number>(Date.now())
@@ -19,12 +23,20 @@ const generateMCQ = () => {
     let timer = setInterval(refreshTime, 10)
     startTime.value = Date.now()
     loadingGeneration.value = true
-    api.post('question/generate/v2/', {'text': inputText.value}).then(
-    response => {
-      questions.value = response.data
+    console.log('selected model', selectedModel.value)
+    api.post('question/generate/v2/', {
+      'text': inputText.value,
+      'model': selectedModel?.value,
+      'count': countGenerations.value
+    })
+    .then(response => {
       loadingGeneration.value = false
       endTime.value = Date.now()
       clearInterval(timer)
+      if (response.status == 200)
+        questions.value = response.data
+      else
+        errors.value = 'This model could not generate any question on this paragraph.'
     }).catch(e => { clearInterval(timer); errorCatch(e) } )
   } else {
     errors.value = 'Please enter at least 100 characters.'
@@ -48,6 +60,12 @@ const executionTime = computed(() => {
   return Math.floor((endTime.value - startTime.value))
 })
 
+onMounted(() => {
+  api.get('model/list/').then((response) => {
+    models.value = response.data
+    selectedModel.value = response.data[0].name
+  }).catch(e => { console.log(e) })
+})
 
 </script>
 
@@ -94,6 +112,31 @@ const executionTime = computed(() => {
         </v-container>
       </v-col>
       <v-col cols="6">
+        <v-row>
+          <v-col cols="6">
+            <v-card class="mb-3">
+              <v-select
+                label="Select model"
+                :items="models"
+                v-model="selectedModel"
+                item-title="name"
+                item-value="name"
+                variant="solo"
+              ></v-select>
+            </v-card>
+          </v-col>
+          <v-col cols="6">
+            <v-card class="mb-3">
+              <v-text-field
+                v-model="countGenerations"
+                label="Number of questions"
+                single-line
+                suffix="max questions"
+                type="number"
+              />
+            </v-card>
+          </v-col>
+        </v-row>
         <VCard title="Output: Questions " min-height="500">
           <div class="d-flex flex-row justify-content-between">
             <div>
@@ -107,6 +150,7 @@ const executionTime = computed(() => {
           </div>
           <QuestionsPanels v-if="!isEmptyArray(questions)" :questions="questions"></QuestionsPanels>
         </VCard>
+
       </v-col>
 
     </v-row>

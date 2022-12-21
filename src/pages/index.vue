@@ -8,3 +8,9 @@ router.push({path: '/search'})
   <div>
   </div>
 </template>
+
+
+<route lang="yaml">
+  meta:
+    layout: default
+</route>

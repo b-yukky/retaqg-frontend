@@ -28,7 +28,7 @@ injectSkinClasses()
     <!-- 👉 navbar -->
     <template #navbar>
       <RouterLink
-        to="/evaluate"
+        to="/"
         class="d-flex align-center gap-x-3"
       >
         <VNodeRenderer :nodes="themeConfig.app.logo" />

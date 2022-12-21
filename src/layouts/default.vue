@@ -20,6 +20,9 @@ watchOnce(
     switchToVerticalNavOnLtOverlayNavBreakpoint(windowWidth)
   },
 )
+
+appContentLayoutNav.value = AppContentLayoutNav.Vertical
+
 </script>
 
 <template>

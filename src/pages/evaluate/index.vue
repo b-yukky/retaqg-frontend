@@ -15,7 +15,7 @@ const startEvaluation = () => {
     api.get('question/evaluation/select/').then(response => {
       loading.value = false
       if (response.status == 200) {
-        router.push({path: `/evaluate/${response.data.id}`})
+        router.replace({path: `/evaluate/${response.data.id}`})
       } else {
         noEvaluationsMessage.value = true
       }
@@ -83,9 +83,8 @@ const startEvaluation = () => {
   </div>
 </template>
 
-
-
 <route lang="yaml">
   meta:
     layout: evaluation
-  </route>
+    name: evaluate
+</route>

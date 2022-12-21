@@ -130,3 +130,8 @@ const getQuestionsFromParagraph = (params: any) => {
   color: #4caf50;
 }
 </style>
+
+<route lang="yaml">
+  meta:
+    layout: default
+</route>

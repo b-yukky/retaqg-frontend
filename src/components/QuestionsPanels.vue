@@ -11,13 +11,11 @@ const openedPanels = ref<number[]>([])
 
 const createChoices = (question: Question) => {
     if (isNullOrUndefined(question.choices)) {
-      console.log(question.choices)
       question.choices = []
       question.distractors.forEach((distractor) => question.choices.push({ text: distractor.text, is_answer: false}))
       question.choices.push({ text: question.answer, is_answer: true})
       question.choices = shuffle(question.choices)
     }
-    console.log(openedPanels.value)
   }
 
 onMounted(() => {

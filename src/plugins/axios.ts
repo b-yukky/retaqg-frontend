@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const axiosIns = axios.create({
 
-  baseURL: 'http://localhost:8000/aqg/',
+  baseURL: 'http://192.168.101.36:8000/aqg/',
   timeout: 10000,
   headers: { 
     'Content-Type':  'application/json',
@@ -10,3 +10,4 @@ const axiosIns = axios.create({
 })
 
 export default axiosIns
+
