@@ -72,7 +72,7 @@ onMounted(() => {
 <template>
   <div>
     <v-row >
-      <v-col cols="6">
+      <v-col cols="12" md="6" sm="12">
         <VCard title="Input: Context 🙌" >
           <v-textarea 
             v-model="inputText" 
@@ -111,9 +111,9 @@ onMounted(() => {
           </v-alert>
         </v-container>
       </v-col>
-      <v-col cols="6">
+      <v-col cols="12" md="6" sm="12">
         <v-row>
-          <v-col cols="6">
+          <v-col cols="6" md="6" sm="12">
             <v-card class="mb-3">
               <v-select
                 label="Select model"
@@ -125,7 +125,7 @@ onMounted(() => {
               ></v-select>
             </v-card>
           </v-col>
-          <v-col cols="6">
+          <v-col cols="6" md="6" sm="12">
             <v-card class="mb-3">
               <v-text-field
                 v-model="countGenerations"

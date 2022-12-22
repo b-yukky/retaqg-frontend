@@ -1,9 +1,9 @@
-import { fileURLToPath } from 'url'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import DefineOptions from 'unplugin-vue-define-options/vite'
+import { fileURLToPath } from 'url'
 import { defineConfig } from 'vite'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
@@ -55,4 +55,5 @@ export default defineConfig({
       './src/**/*.vue',
     ],
   },
+  base: process.env.NODE_ENV === 'production' ? '/qu/aqg/' : ''
 })

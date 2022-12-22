@@ -29,57 +29,60 @@ const startEvaluation = () => {
 
 <template>
   <div class="d-flex justify-md-center">
-    <VCard
-      width="60%"
-      title="Evaluate questions"
-    >
-
-      <v-card-text>
-        <v-alert
-      color="info"
-      title="Information"
-      variant="tonal"
-    >
-      <div>
-        You will be asked to evaluate some questions.
-      </div>
-
-      <v-divider class="my-4 bg-light-blue-lighten-4"></v-divider>
-
-      <div class="d-flex flex-row align-center justify-space-between">
-        <div>
-          You can stop and come back whenever you want to resume the evaluations.
-        </div>
-
-        <v-btn
-          color="info"
-          variant="outlined"
-          @click="startEvaluation"
+    <v-row class="pa-0">
+      <v-col cols="12" class="pa-0">
+        <VCard
+          title="Evaluate questions"
         >
-          Start
-        </v-btn>
-      </div>
-    </v-alert>
 
-      </v-card-text>
+          <v-card-text>
+            <v-alert
+          color="info"
+          title="Information"
+          variant="tonal"
+        >
+          <div>
+            You will be asked to evaluate some questions.
+          </div>
 
+          <v-divider class="my-4 bg-light-blue-lighten-4"></v-divider>
 
-      <v-card-actions>
-        <v-alert 
-          v-if="noEvaluationsMessage" 
-          type="success" 
-          density="compact"
-        > No questions to evaluate yet.
+          <div class="d-flex flex-row align-center justify-space-between">
+            <div>
+              You can stop and come back whenever you want to resume the evaluations.
+            </div>
+
+            <v-btn
+              color="info"
+              variant="outlined"
+              @click="startEvaluation"
+            >
+              Start
+            </v-btn>
+          </div>
         </v-alert>
-      </v-card-actions>
 
-      <v-progress-linear
-        :active="loading"
-        indeterminate
-        color="primary"
-      ></v-progress-linear>
+          </v-card-text>
 
-    </VCard>
+
+          <v-card-actions>
+            <v-alert 
+              v-if="noEvaluationsMessage" 
+              type="success" 
+              density="compact"
+            > No questions to evaluate yet.
+            </v-alert>
+          </v-card-actions>
+
+          <v-progress-linear
+            :active="loading"
+            indeterminate
+            color="primary"
+          ></v-progress-linear>
+
+        </VCard>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
