@@ -6,7 +6,8 @@ import type { Paragraph, Question } from '@/types'
 import api from '@axios'
 import { isEmptyArray, isNullOrUndefined } from '@core/utils/index'
 import "ag-grid-community/styles/ag-grid.css"
-import "ag-grid-community/styles/ag-theme-material.css"
+import "ag-grid-community/styles/ag-theme-alpine.css"
+
 import { AgGridVue } from 'ag-grid-vue3'
 import { ref } from 'vue'
 
@@ -86,7 +87,7 @@ const getQuestionsFromParagraph = (params: any) => {
       ></v-progress-linear>
       <ag-grid-vue
         style="height: 300px;"
-        class="ag-theme-material mx-5 mb-3"
+        class="ag-theme-alpine mx-5 mb-3"
         animateRows="true"
         :columnDefs="columnDefs.value"
         :rowData="paragraphs"
@@ -129,6 +130,22 @@ const getQuestionsFromParagraph = (params: any) => {
 .green {
   color: #4caf50;
 }
+
+.ag-theme-alpine {
+    --ag-foreground-color: rgb(var(--v-theme-on-background));
+    --ag-background-color: rgb(var(--v-theme-background));
+    --ag-odd-row-background-color: rgb(var(--v-theme-surface));
+    --ag-border-color: rgb(var(--v-theme-grey-50));
+    --ag-header-background-color: rgb(var(--v-theme-surface));
+
+}
+
+
+.ag-theme-alpine .ag-header-cell-label {
+    --ag-foreground-color: rgb(var(--v-theme-on-background));
+    font-style: italic;
+}
+
 </style>
 
 <route lang="yaml">
