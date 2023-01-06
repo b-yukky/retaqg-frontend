@@ -5,7 +5,7 @@ const production = process.env.NODE_ENV
 let API_URL = 'https://la.ait.kyushu-u.ac.jp/qu/aqg/api/aqg/'
 
 if (production === 'development') {
-  API_URL = 'http://192.168.101.36:8000/aqg/'
+  API_URL = 'http://192.168.101.38:8000/aqg/'
 }
 
 console.log('my api',API_URL)
