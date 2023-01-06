@@ -33,7 +33,7 @@ const logout = () => {
       label
       :color="user ? 'primary': 'default'"
       
-    >{{ user ? user.username : 'Login' }}
+    >{{ user ? user.username || user.uuid : 'Login' }}
 
       <!-- SECTION Menu -->
       <VMenu
@@ -53,7 +53,7 @@ const logout = () => {
             </template>
 
             <VListItemTitle class="font-weight-semibold">
-              {{ user.username }}
+              {{ user.username || user.uuid }}
             </VListItemTitle>
             <VListItemSubtitle v-if="!isEmptyArray(user.groups)"> {{ user.groups  }}</VListItemSubtitle>
           </VListItem>

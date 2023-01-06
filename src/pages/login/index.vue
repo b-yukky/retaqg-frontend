@@ -48,14 +48,14 @@ const login = () => {
                 v-model="user.username"
                 :rules="[requiredValidator]"
                 name="input-10-1"
-                label="Username"
+                label="Username or UUID"
               ></v-text-field>
             </v-col>
             <v-col cols="12">
               <v-text-field
                 v-model="user.password"
                 :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[requiredValidator]"
+                :rules="[]"
                 :type="showPassword ? 'text' : 'password'"
                 name="input-10-1"
                 label="Password"

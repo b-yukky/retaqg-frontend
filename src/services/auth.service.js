@@ -17,6 +17,20 @@ class AuthService {
       })
   }
 
+  loginNoPassword(uuid) {
+    return api
+      .post('auth/login/nopassword/', {
+        username: uuid,
+      })
+      .then((response) => {
+        if (response.data.access) {
+          TokenService.setUser(response.data)
+        }
+
+        return response.data
+      })
+  }
+
   logout() {
     TokenService.removeUser()
   }

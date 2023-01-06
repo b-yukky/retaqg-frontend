@@ -18,6 +18,17 @@ export const useAuthStore = defineStore('auth', () => {
         return Promise.reject(error)
     })
   }
+
+  function loginNoPassword(uuid: any) {
+    return AuthService.loginNoPassword(uuid)
+      .then((response) => {
+        user.value = TokenService.getUser()
+        status.value.loggedIn = true
+        return Promise.resolve(user)
+    }).catch( error => { 
+        return Promise.reject(error)
+    })
+  }
   
   function logout() {
     AuthService.logout()
@@ -32,5 +43,5 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
 
-  return { user, status, login, logout, refreshAccessToken }
+  return { user, status, login, loginNoPassword, logout, refreshAccessToken }
 })
