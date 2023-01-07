@@ -8,8 +8,6 @@ if (production === 'development') {
   API_URL = 'http://192.168.101.38:8000/aqg/'
 }
 
-console.log('my api',API_URL)
-
 const axiosIns = axios.create({
 
   baseURL: API_URL,

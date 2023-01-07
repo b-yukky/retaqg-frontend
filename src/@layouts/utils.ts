@@ -46,9 +46,6 @@ export const isNavLinkActive = (link: NavLink, router: Router) => {
   // Matched routes array of current route
   const matchedRoutes = router.currentRoute.value.matched
 
-  console.log('matched routes', matchedRoutes)
-  console.log('link', link)
-
   // Check if provided route matches route's matched route
   const resolveRoutedName = resolveNavLinkRouteName(link, router)
 

@@ -7,7 +7,7 @@ import { isEmptyArray } from '@core/utils/index'
 const questions = ref<Question[]>([])
 const models = ref<Model[]>([])
 const selectedModel = ref<any>()
-const countGenerations = ref<any>(2)
+const countGenerations = ref<any>(1)
 
 const inputText = ref<string>('')
 const topic = ref<string>('')
