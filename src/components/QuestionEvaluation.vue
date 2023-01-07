@@ -56,7 +56,13 @@ onMounted(() => {
   api.get(`evaluation/question/${props.question.id}`).then( response => {
     loading.value = false
     questionEvaluation.value = response.data
-  }).catch(e => { console.log(e); loading.value = false })
+  }).catch(e => {
+    if (e.response.status == 403) {
+      router.replace({path: '/pretest/english/'})
+    }
+    console.log(e); 
+    loading.value = false 
+  })
 })
 
 const sendEvaluation = () => {

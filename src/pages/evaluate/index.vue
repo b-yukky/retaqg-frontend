@@ -43,13 +43,13 @@ const startEvaluation = () => {
         >
           <div>
             <p class="text-subtitle-1 text-high-emphasis mb-0">
-            This research study aims at evaluating the performance of AI-generated questions on some specific text paragraphs for different AI models.<br>
-            In this study, you will have to evaluate a set of AI-generated questions on different paragraphs.<br>
+            This research study aims at evaluating the performance of AI-generated questions on some reading material for self-practice learning.<br>
+            In this experiment, you will have to evaluate a set of AI-generated questions on different text paragraphs.<br>
             <br>
             You will first need to read the given context paragraph, and then evaluate the question with the following metrics:
             </p>
           </div>
-          <v-list lines="false" bg-color="#16b1ff00" variant="">
+          <v-list lines="false" bg-color="#16b1ff00">
               <v-list-item title="Familiarity" color="warning">
               <v-list-item-subtitle>
                 Rate how familiar, knowledgeable and experienced you are with the topic of the context paragraph. High ratings indicate you already possess knowledge on the topic.
@@ -62,7 +62,7 @@ const startEvaluation = () => {
               </v-list-item>
               <v-list-item title="Relevance">
                 <v-list-item-subtitle>
-                  Rate how much the question is relevant, suitable, purposeful and appropriate for self-studying on the given paragraph.<br> Low ratings indicate the question is useless, unrelated or not beneficial for the reader. 
+                  Rate how much the question is relevant, suitable, purposeful and appropriate for self-practice on the given paragraph.<br> Low ratings indicate the question is useless, unrelated or not beneficial for the reader. 
                 </v-list-item-subtitle>
               </v-list-item>
               <v-list-item title="Difficulty">

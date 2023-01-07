@@ -14,11 +14,7 @@ const authStore = useAuthStore()
 
 const login = () => {
   loading.value = true
-  // AuthService.login(user.value).then((response) => {
-  //   console.log(response)
-  //   loading.value  = false
-  //   router.replace({path: '/evaluate'})
-  // }).catch(e => { errorMessage.value = e.response.data.detail; loading.value  =false})
+
   authStore.login(user.value).then((response)=> {
     loading.value  = false
     router.replace({path: '/evaluate'})

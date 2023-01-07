@@ -9,7 +9,6 @@ import { useRoute } from 'vue-router'
 import { useDisplay } from 'vuetify'
 
 const route = useRoute()
-router.activeClass
 const question = ref()
 const loading = ref(false)
 

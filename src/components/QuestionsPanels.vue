@@ -38,7 +38,7 @@ onMounted(() => {
           v-model="openedPanels"
           >
           <VExpansionPanelTitle @click="createChoices(question)"> 
-            <vrow>
+            <v-row>
               <v-col>
                 {{ question.text }}
               </v-col>
@@ -58,7 +58,7 @@ onMounted(() => {
               > {{ question.model.name }}
               </VChip>
               </v-col>
-            </vrow>
+            </v-row>
           </VExpansionPanelTitle>
           <VExpansionPanelText>
             <VList>

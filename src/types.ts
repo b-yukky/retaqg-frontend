@@ -54,3 +54,7 @@ export interface EvaluationStats {
   questions_completed: number
   questions_remaining: number
 }
+
+export interface Profile {
+  english_proficiency: number
+}

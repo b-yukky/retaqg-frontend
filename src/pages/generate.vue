@@ -7,9 +7,10 @@ import { isEmptyArray } from '@core/utils/index'
 const questions = ref<Question[]>([])
 const models = ref<Model[]>([])
 const selectedModel = ref<any>()
-const countGenerations = ref<any>(3)
+const countGenerations = ref<any>(2)
 
 const inputText = ref<string>('')
+const topic = ref<string>('')
 const loadingGeneration = ref<boolean>(false)
 const startTime = ref<number>(Date.now())
 const endTime = ref<number>(Date.now())
@@ -27,7 +28,8 @@ const generateMCQ = () => {
     api.post('question/generate/v2/', {
       'text': inputText.value,
       'model': selectedModel?.value,
-      'count': countGenerations.value
+      'count': countGenerations.value,
+      'topic': topic.value
     })
     .then(response => {
       loadingGeneration.value = false
@@ -73,6 +75,17 @@ onMounted(() => {
   <div>
     <v-row >
       <v-col cols="12" md="6" sm="12">
+        <v-row>
+          <v-col cols="12" >
+            <v-card class="mb-3">
+              <v-text-field
+                label="Topic"
+                v-model="topic"
+                variant="solo"
+              ></v-text-field>
+            </v-card>
+          </v-col>
+        </v-row>
         <VCard title="Input: Context 🙌" >
           <v-textarea 
             v-model="inputText" 
