@@ -76,6 +76,7 @@ const login = () => {
             color="primary"
             variant="tonal"
             @click="login"
+            :disabled="loading"
           >
             Log in
           </v-btn>

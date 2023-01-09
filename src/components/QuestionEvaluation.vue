@@ -223,6 +223,7 @@ const sendEvaluation = () => {
             size="large"
             color="primary"
             :style="{ 'width': '200px'}"
+            :disabled="loading"
           > Next
           </v-btn>
       </div>

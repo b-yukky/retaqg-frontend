@@ -71,6 +71,7 @@ const tickLabelsEnglishProficiency = ref({
             color="primary"
             variant="tonal"
             @click="next"
+            :disabled="loading"
           >
             Next
           </v-btn>

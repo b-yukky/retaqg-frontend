@@ -60,6 +60,7 @@ const continueEvaluation = () => {
             color="primary"
             variant="tonal"
             @click="continueEvaluation"
+            :disabled="loading"
           >
             Continue
           </v-btn>

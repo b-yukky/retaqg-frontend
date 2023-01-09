@@ -49,7 +49,7 @@ const startEvaluation = () => {
             This research study aims at evaluating the performance of AI-generated questions on some reading material for self-practice learning.<br>
             In this experiment, you will have to evaluate a set of AI-generated questions on different text paragraphs.<br>
             <br>
-            You will first need to read the given context paragraph, and then evaluate the question with the following metrics:
+            You will first need to read the given context paragraph, and then rate the question by the following metrics:
             </p>
           </div>
           <v-list lines="false" bg-color="#16b1ff00">
@@ -70,7 +70,7 @@ const startEvaluation = () => {
               </v-list-item>
               <v-list-item title="Difficulty">
                 <v-list-item-subtitle>
-                  Rate how difficult the question is to answer after reading the context paragraph, without prior knowledge. Please avoid transposing your current knowledge when judging the difficulty of the question. If the question is only answerable with external knowledge, it is considered as “impossible” difficulty. A question is self-evident if you can answer without reading the context and with a low familiarity with the topic.
+                  Rate how difficult the question is to answer after reading the context paragraph, without prior knowledge. Please avoid using your previous knowledge when judging the difficulty of the question. If the question is only answerable with external knowledge, it is considered as “impossible” difficulty. A question is self-evident if you can answer without reading the context and with a low familiarity with the topic.
                 </v-list-item-subtitle>
               </v-list-item>
               <v-list-item title="Choices">
