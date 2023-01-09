@@ -70,8 +70,11 @@ const sendEvaluation = () => {
   api.put(`evaluation/`, questionEvaluation.value).then( response => {
     loading.value = false
     if (response.status == 200) {
-      nextQuestionId.value = response.data.id
-      router.replace({path: `/evaluate/${nextQuestionId.value}`})
+      if (response.data.id) {
+        nextQuestionId.value = response.data.id
+        router.replace({path: `/evaluate/${nextQuestionId.value}`})
+      } else
+        router.replace({path: '/evaluate/add-questions'})
     } else {
       router.replace({path: '/evaluate'})
     }

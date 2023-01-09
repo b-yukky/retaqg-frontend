@@ -15,7 +15,10 @@ const startEvaluation = () => {
     api.get('question/evaluation/select/').then(response => {
       loading.value = false
       if (response.status == 200) {
-        router.replace({path: `/evaluate/${response.data.id}`})
+        if (response.data.id) {
+          router.replace({path: `/evaluate/${response.data.id}`})
+        } else
+          router.replace({path: '/evaluate/add-questions'})
       } else {
         noEvaluationsMessage.value = true
       }
