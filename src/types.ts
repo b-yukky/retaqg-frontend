@@ -57,4 +57,11 @@ export interface EvaluationStats {
 
 export interface Profile {
   english_proficiency: number
+  minimum_questions: number
+}
+
+export interface Dataset {
+  id: number
+  name: string
+  comment: string
 }

@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import QuestionsPanels from '@/components/QuestionsPanels.vue'
-import type { Model, Question } from '@/types'
+import type { Model, Question, Dataset } from '@/types'
 import api from '@axios'
 import { isEmptyArray } from '@core/utils/index'
 
 const questions = ref<Question[]>([])
 const models = ref<Model[]>([])
 const selectedModel = ref<any>()
+const datasets = ref<Dataset[]>([])
+const selectedDataset = ref<any>()
+
 const countGenerations = ref<any>(1)
 
 const inputText = ref<string>('')
@@ -29,7 +32,8 @@ const generateMCQ = () => {
       'text': inputText.value,
       'model': selectedModel?.value,
       'count': countGenerations.value,
-      'topic': topic.value
+      'topic': topic.value,
+      'dataset': selectedDataset.value
     })
     .then(response => {
       loadingGeneration.value = false
@@ -67,6 +71,11 @@ onMounted(() => {
     models.value = response.data
     selectedModel.value = response.data[0].name
   }).catch(e => { console.log(e) })
+
+  api.get('dataset/list/').then((response) => {
+    datasets.value = response.data
+    selectedDataset.value = response.data[0].name
+  }).catch(e => { console.log(e) })
 })
 
 </script>
@@ -76,13 +85,25 @@ onMounted(() => {
     <v-row >
       <v-col cols="12" md="6" sm="12">
         <v-row>
-          <v-col cols="12" >
+          <v-col cols="6" >
             <v-card class="mb-3">
               <v-text-field
                 label="Topic"
                 v-model="topic"
                 variant="solo"
               ></v-text-field>
+            </v-card>
+          </v-col>
+          <v-col cols="6" >
+            <v-card class="mb-3">
+              <v-select
+                label="Select dataset"
+                :items="datasets"
+                v-model="selectedDataset"
+                item-title="name"
+                item-value="name"
+                variant="solo"
+              ></v-select>
             </v-card>
           </v-col>
         </v-row>
