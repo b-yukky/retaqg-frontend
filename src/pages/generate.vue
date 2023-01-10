@@ -132,8 +132,9 @@ onMounted(() => {
             :loading="loadingGeneration"
             :disabled="loadingGeneration"
           > Generate Questions 
-          <v-icon class="ml-2" large right>mdi-cog</v-icon>
+          <v-icon class="ml-2" size="large" right>mdi-cog</v-icon>
         </v-btn>
+        
           <v-alert 
             v-if="errors"
             type="error"
