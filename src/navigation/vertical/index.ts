@@ -17,8 +17,8 @@ export default [
     icon: { icon: 'mdi-account-star' },
   },
   {
-    title: 'Other',
-    to: { name: 'other' },
-    icon: { icon: 'mdi-file-document-outline' },
+    title: 'Admin',
+    to: { name: 'admin' },
+    icon: { icon: 'mdi-cog' },
   },
 ] as VerticalNavItems

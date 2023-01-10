@@ -48,6 +48,9 @@ export interface Evaluation {
 export interface User {
   username: string
   password: string
+  id:string
+  uuid: string
+  login_url: string
 }
 
 export interface EvaluationStats {
