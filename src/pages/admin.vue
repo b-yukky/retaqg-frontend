@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import api from '@axios'
 import type { User } from '@/types'
+import useClipboard from 'vue-clipboard3'
 
 const loading = ref(false)
 const userInfo = ref<User>({} as User)
+const { toClipboard } = useClipboard()
 
 const generateUser = () => {
   loading.value = true
@@ -14,9 +16,8 @@ const generateUser = () => {
   })
 }
 
-const copyLoginURL = () => {
-  console.log('im copyyying')
-  navigator.clipboard.writeText(userInfo.value.login_url)
+function copyLoginURL() {
+  toClipboard(userInfo.value.login_url)
 }
 
 </script>
@@ -41,7 +42,7 @@ const copyLoginURL = () => {
             label
             link
             color="primary"
-            @click="copyLoginURL"
+            @click="copyLoginURL()"
             v-if="userInfo.login_url" 
           >
             {{ userInfo.login_url }} 

@@ -3,6 +3,7 @@ import '@/@iconify/icons-bundle'
 import App from '@/App.vue'
 import layoutsPlugin from '@/plugins/layouts'
 import vuetify from '@/plugins/vuetify'
+
 import { loadFonts } from '@/plugins/webfontloader'
 import router from '@/router'
 import setupInterceptors from '@/services/setupInterceptors'
