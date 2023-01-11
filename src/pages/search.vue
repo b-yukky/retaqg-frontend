@@ -47,6 +47,7 @@ const columnDefs = reactive({
   value: [
         { field: "id", },
         { field: "text", width: 800},
+        { field: "topic", },
         { field: "length", },
         { field: "Date", },
   ],
