@@ -69,7 +69,7 @@ onMounted(() => {
             title="Question ❓"
             fluid
           >
-          <QuestionsPanels v-if="!isEmpty(question)" :questions="[question]"></QuestionsPanels>
+          <QuestionsPanels v-if="!isEmpty(question)" :questions="[question]" :evalmode="true"></QuestionsPanels>
 
           </VCard>
         </VCol>

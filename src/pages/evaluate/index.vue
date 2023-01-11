@@ -79,6 +79,10 @@ const startEvaluation = () => {
                 </v-list-item-subtitle>
               </v-list-item>
             </v-list>
+            <div>
+              <p>Multiple questions can be asked on a single paragraph, so you may receive the same paragraph in a row but with a different question.</p>
+              <p>Estimated time: <v-chip> {{ 3 }}</v-chip> </p>
+            </div>
           <v-divider class="my-4 bg-light-blue-lighten-4"></v-divider>
 
           <div class="d-flex flex-row align-center justify-space-between">

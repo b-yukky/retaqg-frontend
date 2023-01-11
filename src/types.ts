@@ -36,7 +36,7 @@ export interface Question {
 
 export interface Evaluation {
   id: number
-  familiarity: number
+  confidence: number
   relevance: number
   acceptability: boolean
   difficulty: number

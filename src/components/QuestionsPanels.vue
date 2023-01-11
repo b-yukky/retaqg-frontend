@@ -5,7 +5,7 @@ import { isNullOrUndefined } from '@core/utils/index'
 import { shuffle } from '@core/utils/operations'
 
 
-const props = defineProps(['questions'])
+const props = defineProps(['questions', 'evalmode'])
 
 const openedPanels = ref<number[]>([])
 
@@ -44,13 +44,14 @@ onMounted(() => {
               </v-col>
               <v-col>
                 <VChip 
+                  v-if="!props.evalmode"
                   class="ml-2"
                   color="primary"
                   label
                 > {{ question.status }}
               </VChip>
               <VChip 
-                v-if="!isNullOrUndefined(question.model)" 
+                v-if="!isNullOrUndefined(question.model) && !props.evalmode" 
                 class="mx-2"
                 label
                 variant="outlined"
