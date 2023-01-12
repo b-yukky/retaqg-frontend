@@ -68,3 +68,11 @@ export interface Dataset {
   name: string
   comment: string
 }
+
+export interface ExperimentSettings {
+  id: number
+  name: string
+  active: boolean
+  max_eval_per_questions: string
+  max_questions_per_subject: string
+}
