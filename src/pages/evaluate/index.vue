@@ -7,6 +7,7 @@ import api from '@axios'
 const loading = ref<boolean>(false)
 
 const noEvaluationsMessage = ref(false)
+const maxQuestions = ref(0)
 const authStore = useAuthStore()
 
 const startEvaluation = () => {
@@ -27,6 +28,13 @@ const startEvaluation = () => {
     router.replace({path: '/login'})
   }
 }
+
+onMounted(() => {
+  api.get('experiment/settings/active/').then(response => {
+    console.log(response.data)
+    maxQuestions.value = response.data.max_questions_per_subject
+  })
+})
 
 </script>
 
@@ -49,13 +57,13 @@ const startEvaluation = () => {
             This research study aims at evaluating the performance of AI-generated questions on some reading material for self-practice learning.<br>
             In this experiment, you will have to evaluate a set of AI-generated questions on different text paragraphs.<br>
             <br>
-            You will first need to read the given context paragraph, and then rate the question by the following metrics:
+            You will first need to read the given context paragraph, and then rate the associated question by the following metrics:
             </p>
           </div>
           <v-list lines="false" bg-color="#16b1ff00">
-              <v-list-item title="Familiarity" color="warning">
+              <v-list-item title="Self-Confidence" color="warning">
               <v-list-item-subtitle>
-                Rate how familiar, knowledgeable and experienced you are with the topic of the context paragraph. High ratings indicate you already possess knowledge on the topic.
+                Rate how confident you are in your understanding of the context paragraph. If you don't understand the context well-enough, it may be harder to evaluate the quality of the question. High ratings indicate you sufficiently understood the text so you are confident in your evaluation.
               </v-list-item-subtitle>
               </v-list-item>
               <v-list-item title="Acceptability">
@@ -70,23 +78,25 @@ const startEvaluation = () => {
               </v-list-item>
               <v-list-item title="Difficulty">
                 <v-list-item-subtitle>
-                  Rate how difficult the question is to answer after reading the context paragraph, without prior knowledge. Please avoid using your previous knowledge when judging the difficulty of the question. If the question is only answerable with external knowledge, it is considered as “impossible” difficulty. A question is self-evident if you can answer without reading the context and with a low familiarity with the topic.
+                  Rate the difficulty of the question after reading the given context, without relying on any prior knowledge. If the answer to the question requires knowledge not found within the given text, it is deemed to be of an "impossible" difficulty level.
+                  A question is "self-evident" if individuals can discern the answer without requiring any prior knowledge on the topic.
                 </v-list-item-subtitle>
               </v-list-item>
               <v-list-item title="Choices">
                 <v-list-item-subtitle>
-                  Rate how relevant are the given choices as potential answers. Choices should be each different from each other, and no other choice answer should be correct apart from the real answer highlighted in green. If this is not respected, ratings should be lower than 2 (confused or terrible). An Ideal situation would be if the given choices are all distinct, coherent, understandable and challenging.
+                  Rate how relevant are the given choices as potential answers. Choices should be distinct from one another, and the only correct response should be the one indicated in green. If this is not respected, ratings should be lower than 2 (confused or terrible). An Ideal situation would be if the given choices are all distinct, coherent, understandable and challenging.
                 </v-list-item-subtitle>
               </v-list-item>
             </v-list>
             <div>
-              <p>Multiple questions can be asked on a single paragraph, so you may receive the same paragraph in a row but with a different question.</p>
-              <p>Estimated time: <v-chip> {{ 3 }}</v-chip> </p>
+              <p class="text-subtitle-1 text-high-emphasis">You may receive the same paragraph multiple times in succession, but if so with a different question to evaluate.</p>
             </div>
           <v-divider class="my-4 bg-light-blue-lighten-4"></v-divider>
 
           <div class="d-flex flex-row align-center justify-space-between">
             <div>
+              <p>Estimated time: <v-chip v-if="maxQuestions">~{{ 2*maxQuestions }}-{{ 3*maxQuestions }}min</v-chip> </p>
+
               You can stop and come back whenever you want to resume the evaluations.
             </div>
 
