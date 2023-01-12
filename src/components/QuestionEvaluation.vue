@@ -44,11 +44,11 @@ const tickLabelsChoices = ref({
   3: 'Suitable',
   4: 'Ideal',
 })
-const confidenceTooltip = ref('Rate how familiar, knowledgeable and experienced you are with the topic of the context paragraph. High ratings indicate you already possess knowledge on the topic.')
+const confidenceTooltip = ref("Rate how confident you are in your understanding of the context paragraph. If you don\'t understand the context well-enough, it may be harder to evaluate the quality of the question. High ratings indicate you sufficiently understood the text so you are confident in your evaluation.")
 const acceptabilityTooltip = ref('Tick True if you think the question is understandable, coherent and grammatically correct, regardless of its relevance with the context paragraph.')
 const relevanceTooltip = ref('Rate how much the question is relevant, suitable, purposeful and appropriate for self-studying on the given paragraph. Low ratings indicate the question is useless, unrelated or not beneficial for the reader. ')
-const difficultyTooltip = ref('Rate how difficult the question is to answer after reading the context paragraph, without prior knowledge. Please avoid transposing your current knowledge when judging the difficulty of the question. If the question is only answerable with external knowledge, it is considered as “impossible” difficulty. A question is self-evident if you can answer without reading the context and with a low confidence with the topic.')
-const choicesTooltip = ref('Rate how relevant are the given choices as potential answers. Choices should be each different from each other, and no other choice answer should be correct apart from the real answer highlighted in green. If this is not respected, ratings should be lower than 2 (confused or terrible). An Ideal situation would be if the given choices are all distinct, coherent, understandable and challenging.')
+const difficultyTooltip = ref('Rate the difficulty of the question after reading the given context, without relying on any prior knowledge. If the answer to the question requires knowledge not found within the given text, it is deemed to be of an "impossible" difficulty level. A question is "self-evident" if individuals can discern the answer without requiring any prior knowledge on the topic.')
+const choicesTooltip = ref('Rate how relevant are the given choices as potential answers. Choices should be distinct from one another, and the only correct response should be the one indicated in green. If this is not respected, ratings should be lower than 2 (confused or terrible). An Ideal situation would be if the given choices are all distinct, coherent, understandable and challenging.')
 
 onMounted(() => {
   openedPanels.value = [0]

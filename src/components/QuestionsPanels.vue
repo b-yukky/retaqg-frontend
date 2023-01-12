@@ -4,7 +4,6 @@ import type { Question } from '@/types'
 import { isNullOrUndefined } from '@core/utils/index'
 import { shuffle } from '@core/utils/operations'
 
-
 const props = defineProps(['questions', 'evalmode'])
 
 const openedPanels = ref<number[]>([])
@@ -23,6 +22,11 @@ onMounted(() => {
   openedPanels.value = [0]
 })
 
+watch(props, (newQ) => {
+  openedPanels.value = [0]
+  createChoices(props.questions[0])
+})
+
 </script>
 
 <template>
@@ -31,6 +35,7 @@ onMounted(() => {
         v-if="!isNullOrUndefined(props.questions)"
         multiple 
         v-model="openedPanels"
+        @update="createChoices(props.questions[0])"
         >
         <VExpansionPanel
           v-for="question in props.questions"
