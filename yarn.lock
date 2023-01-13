@@ -4710,6 +4710,11 @@
     "astral-regex" "^2.0.0"
     "is-fullwidth-code-point" "^3.0.0"
 
+"sortablejs@^1.14.0":
+  "integrity" "sha512-bv9qgVMjUMf89wAvM6AxVvS/4MX3sPeN0+agqShejLU5z5GX4C75ow1O2e5k4L6XItUyAK3gH6AxSbXrOM5e8w=="
+  "resolved" "https://registry.npmjs.org/sortablejs/-/sortablejs-1.15.0.tgz"
+  "version" "1.15.0"
+
 "source-map-js@^1.0.2", "source-map-js@>=0.6.2 <2.0.0":
   "integrity" "sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw=="
   "resolved" "https://registry.npmjs.org/source-map-js/-/source-map-js-1.0.2.tgz"
@@ -5442,6 +5447,11 @@
   "resolved" "https://registry.npmjs.org/vue-demi/-/vue-demi-0.13.11.tgz"
   "version" "0.13.11"
 
+"vue-draggable-next@^2.1.1":
+  "integrity" "sha512-f5lmA7t6LMaL4viR7dU30zzvqJzaKQs0ymL0Jy9UDT9uiZ2tXF3MzPzEvpTH2UODXZJkT+SnjeV1fXHMsgXLYA=="
+  "resolved" "https://registry.npmjs.org/vue-draggable-next/-/vue-draggable-next-2.1.1.tgz"
+  "version" "2.1.1"
+
 "vue-eslint-parser@^9.0.1":
   "integrity" "sha512-NGn/iQy8/Wb7RrRa4aRkokyCZfOUWk19OP5HP6JEozQFX5AoS/t+Z0ZN7FY4LlmWc4FNI922V7cvX28zctN8dQ=="
   "resolved" "https://registry.npmjs.org/vue-eslint-parser/-/vue-eslint-parser-9.1.0.tgz"
@@ -5492,7 +5502,7 @@
     "@volar/vue-language-core" "0.39.5"
     "@volar/vue-typescript" "0.39.5"
 
-"vue@^2.6.0 || ^3.2.0", "vue@^2.6.12 || ^3.2.4", "vue@^2.6.14 || ^3.2.0", "vue@^3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.0.11", "vue@^3.2.0", "vue@^3.2.25", "vue@> 3.0.0", "vue@2 || 3", "vue@3.2.37", "vue@3.x":
+"vue@^2.6.0 || ^3.2.0", "vue@^2.6.12 || ^3.2.4", "vue@^2.6.14 || ^3.2.0", "vue@^3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.0.11", "vue@^3.2.0", "vue@^3.2.2", "vue@^3.2.25", "vue@> 3.0.0", "vue@2 || 3", "vue@3.2.37", "vue@3.x":
   "integrity" "sha512-bOKEZxrm8Eh+fveCqS1/NkG/n6aMidsI6hahas7pa0w/l7jkbssJVsRhVDs07IdDq7h9KHswZOgItnwJAgtVtQ=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.37.tgz"
   "version" "3.2.37"

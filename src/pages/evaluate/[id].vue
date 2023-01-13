@@ -46,7 +46,7 @@ onMounted(() => {
             >
             <v-card-title class="d-flex justify-space-between" >
               <span>Context Paragraph 📄</span>
-              <v-chip v-if="question" color="error">{{ question.paragraph.topic ? question.paragraph.topic : 'Unknown'  }}</v-chip>
+              <v-chip v-if="question" color="error">{{ question.paragraph.topic ? question.paragraph.topic.name : 'Unknown'  }}</v-chip>
             </v-card-title>
             <VProgressLinear
                 :active="loading"

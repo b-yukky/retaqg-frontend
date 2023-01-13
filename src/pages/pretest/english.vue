@@ -8,7 +8,7 @@ const loading = ref<boolean>(false)
 const dialog = ref<boolean>(true)
 const errorMessage = ref('')
 
-const userProfile = ref<Profile>({'english_proficiency': 0})
+const userProfile = ref<Profile>({} as Profile)
 
 const authStore = useAuthStore()
 
@@ -16,7 +16,7 @@ const next = () => {
   loading.value = true
   api.put('my-profile/', userProfile.value).then( response => {
     loading.value  = false
-    router.replace({path: '/evaluate'})
+    router.replace({path: '/pretest/preferences/'})
   }).catch( e => { console.log(e); loading.value  = false })
 }
 

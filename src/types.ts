@@ -1,8 +1,13 @@
+export interface Topic {
+  name: string
+}
+
 export interface Paragraph {
   id: number
   text: string
   length: number
   summary: number
+  topic: Topic
 }
 
 export interface Distractor {
@@ -74,6 +79,7 @@ export interface Profile {
   date_joined: string
   groups: Group[]
   user: string
+  topic_preferences: {}
 }
 
 export interface Dataset {
