@@ -45,6 +45,12 @@ export interface Evaluation {
   user: number
 }
 
+export interface Group {
+  id: number
+  name: string
+  permissions: number[]
+}
+
 export interface User {
   username: string
   password: string
@@ -59,8 +65,15 @@ export interface EvaluationStats {
 }
 
 export interface Profile {
+  id: number
   english_proficiency: number
-  minimum_questions: number
+  max_questions: number
+  additional_questions: number
+  completed_questions: number
+  last_login: string
+  date_joined: string
+  groups: Group[]
+  user: string
 }
 
 export interface Dataset {

@@ -3,6 +3,8 @@ import api from '@/plugins/axios'
 
 import CreateSubjectUser from '@/components/CreateSubjectUser.vue'
 import ExperimentSettingsCard from '@/components/ExperimentSettingsCard.vue'
+import SubjectsInfoTable from '@/components/SubjectsInfoTable.vue'
+
 import type { ExperimentSettings } from '@/types'
 
 const experiments = ref<ExperimentSettings[]>([])
@@ -27,6 +29,9 @@ onMounted(() => {
     </div>
     <div class="my-2" v-for="experiment in experiments" :key="experiment.id">
       <ExperimentSettingsCard :settings="experiment"></ExperimentSettingsCard>
+    </div>
+    <div>
+      <SubjectsInfoTable></SubjectsInfoTable>
     </div>
   </div>
 </template>

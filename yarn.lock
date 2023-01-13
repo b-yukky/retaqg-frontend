@@ -5517,10 +5517,10 @@
     "perfect-scrollbar" "^1.5.5"
     "postcss-import" "^12.0.0"
 
-"vuetify@^3.0.0-beta.4", "vuetify@3.0.0-beta.11":
-  "integrity" "sha512-WHwHNRpnDZ2ZUaOlL3oSnIvVSz0kVLmF/OVQUupIYvgV8pERgFN2NtXN5E3bq/DQkMyYcEUcnSQIrzQs2aZ36A=="
-  "resolved" "https://registry.npmjs.org/vuetify/-/vuetify-3.0.0-beta.11.tgz"
-  "version" "3.0.0-beta.11"
+"vuetify@^3.0.0-beta.4", "vuetify@3.1.1":
+  "integrity" "sha512-BkfRQZ406xQORpgrcUjuPaT/woO96ef/+2zHCfL3an+CrUhjG/sIAptEybHruq3xwFM0uJibDFqGiridsXc99w=="
+  "resolved" "https://registry.npmjs.org/vuetify/-/vuetify-3.1.1.tgz"
+  "version" "3.1.1"
 
 "webfontloader@~1.6.28":
   "integrity" "sha512-Egb0oFEga6f+nSgasH3E0M405Pzn6y3/9tOVanv/DLfa1YBIgcv90L18YyWnvXkRbIM17v5Kv6IT2N6g1x5tvQ=="
