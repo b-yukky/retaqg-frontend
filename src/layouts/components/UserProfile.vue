@@ -59,21 +59,9 @@ const logout = () => {
           </VListItem>
           <VDivider class="my-2" />
 
-          <!-- 👉 Profile -->
-          <VListItem link disabled>
-            <template #prepend>
-              <VIcon
-                class="me-2"
-                icon="mdi-account-outline"
-                size="22"
-              />
-            </template>
-
-            <VListItemTitle>Profile</VListItemTitle>
-          </VListItem>
 
           <!-- 👉 Settings -->
-          <VListItem link disabled>
+          <VListItem link to="/pretest/english">
             <template #prepend>
               <VIcon
                 class="me-2"
@@ -82,7 +70,7 @@ const logout = () => {
               />
             </template>
 
-            <VListItemTitle>Settings</VListItemTitle>
+            <VListItemTitle>Options</VListItemTitle>
           </VListItem>
 
           <!-- Divider -->
