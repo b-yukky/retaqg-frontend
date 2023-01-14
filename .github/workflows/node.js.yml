@@ -67,7 +67,7 @@ jobs:
           PROXY_HOST: ${{ secrets.PROXY_HOST }}
 
       - name: files
-        run: ls 
+        run: ls .
         
       - name: dir
         run: pwd 
@@ -76,7 +76,7 @@ jobs:
         run: ssh leds-aqg 'cd workspace' 
 
       - name: Check out the source
-        run:  scp -r ./retaqg-frontend/dist/* leds-aqg:/home/ladev/workspace/src/
+        run:  scp -r /home/runner/work/retaqg-frontend/retaqg-frontend/dist/* leds-aqg:/home/ladev/workspace/src/
 
       - name: Start the server
         if: ${{ always() }}
