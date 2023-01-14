@@ -82,7 +82,7 @@ jobs:
         run: ssh leds-aqg 'cd workspace' 
 
       - name: Check out the source
-        run:  scp -r .* leds-aqg:/home/ladev/workspace/src/
+        run:  scp -r ./* leds-aqg:/home/ladev/workspace/src/
 
       - name: Start the server
         if: ${{ always() }}
