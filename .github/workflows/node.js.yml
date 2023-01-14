@@ -65,15 +65,18 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_HOST: ${{ secrets.HOST }}
           PROXY_HOST: ${{ secrets.PROXY_HOST }}
-          
-      - name: Test bastion
-        run: ssh -vv leds-main 'ls' -vvv
-          
+
+      - name: files
+        run: ls 
+        
+      - name: dir
+        run: pwd 
+        
       - name: Stop the server
-        run: ssh -vvv -p 22 leds-aqg 'cd workspace' 
+        run: ssh leds-aqg 'cd workspace' 
 
       - name: Check out the source
-        run:  scp -r dist/* leds-aqg:/home/ladev/workspace/src/
+        run:  scp -r ./retaqg-frontend/dist/* leds-aqg:/home/ladev/workspace/src/
 
       - name: Start the server
         if: ${{ always() }}
