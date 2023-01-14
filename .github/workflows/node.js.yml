@@ -49,6 +49,7 @@ jobs:
             HostName $PROXY_HOST
             User $SSH_USER
             IdentityFile "~/.ssh/deploy.key"
+            StrictHostKeyChecking no
           Host leds-aqg
             HostName $SSH_HOST
             User $SSH_USER
@@ -57,6 +58,7 @@ jobs:
             ServerAliveInterval 60
             ServerAliveCountMax 5
             ForwardAgent yes
+            StrictHostKeyChecking no
           END
         env:
           SSH_USER: ${{ secrets.USERNAME }}
