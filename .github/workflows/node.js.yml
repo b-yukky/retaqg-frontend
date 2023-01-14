@@ -64,7 +64,7 @@ jobs:
           SSH_HOST: ${{ secrets.HOST }}
           PROXY_HOST: ${{ secrets.PROXY_HOST }}
       - name: Stop the server
-        run: ssh leds-aqg 'cd workspace | sudo docker compose ps'
+        run: ssh leds-aqg 'cd workspace' -vvv
 
       - name: Check out the source
         run:  scp -r dist/* leds-aqg:/home/ladev/workspace/src/
