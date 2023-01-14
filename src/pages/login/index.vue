@@ -3,10 +3,11 @@ import { requiredValidator } from '@/@core/utils/validators'
 import router from '@/router'
 import { useAuthStore } from '@/stores/auth'
 import type { User } from '@/types'
+import api from '@axios'
 
 const loading = ref<boolean>(false)
 const dialog = ref<boolean>(true)
-const user = ref<User>({username: '', password: ''})
+const user = ref<User>({username: '', password: ''} as User)
 const showPassword = ref<boolean>(false)
 const errorMessage = ref('')
 
@@ -17,6 +18,7 @@ const login = () => {
 
   authStore.login(user.value).then((response)=> {
     loading.value  = false
+    api.get('my-profile/')
     router.replace({path: '/evaluate'})
   }).catch(e => { console.log(e); errorMessage.value = e.response.data.detail; loading.value = false})
 }
