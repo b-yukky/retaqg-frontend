@@ -79,13 +79,10 @@ jobs:
           name: ${{ github.event.repository.name }}-dist
           
       - name: Stop the server
-        run: ls ./
-        
-      - name: Stop the server
         run: ssh leds-aqg 'cd workspace' 
 
       - name: Check out the source
-        run:  scp -r ./dist/* leds-aqg:/home/ladev/workspace/src/
+        run:  scp -r .* leds-aqg:/home/ladev/workspace/src/
 
       - name: Start the server
         if: ${{ always() }}
