@@ -14,6 +14,7 @@ const selectedTopics = ref<Topic[]>([] as Topic[])
 
 const next = () => {
   loading.value = true
+  selectedTopics.value.forEach((el, i) => { profile.value.topic_preferences[i] = el})
   api.put('my-profile/', profile.value).then( response => {
     loading.value  = false
     console.log('response', response.data)
