@@ -23,7 +23,7 @@ const startEvaluation = () => {
       } else {
         noEvaluationsMessage.value = true
       }
-  }).catch(e => { loading.value = false })
+  }).catch(e => { loading.value = false; router.replace({path: '/pretest/english'}) })
   } else {
     router.replace({path: '/login'})
   }
@@ -56,6 +56,7 @@ onMounted(() => {
             <p class="text-subtitle-1 text-high-emphasis mb-0">
             This research study aims at evaluating the performance of AI-generated questions on some reading material for self-practice learning.<br>
             In this experiment, you will have to evaluate a set of AI-generated questions on different text paragraphs.<br>
+            For each question, there are multiple choices that are also generated, but only 1 choice is the correct answer (highlighted in green).
             <br>
             You will first need to read the given context paragraph, and then rate the associated question by the following metrics:
             </p>
@@ -95,7 +96,7 @@ onMounted(() => {
 
           <div class="d-flex flex-row align-center justify-space-between">
             <div>
-              <p>Estimated time: <v-chip v-if="maxQuestions">~{{ 2*maxQuestions }}-{{ 3*maxQuestions }}min</v-chip> </p>
+              <p>Estimated time: <v-chip v-if="maxQuestions">~{{ 2*maxQuestions }}-{{ 4*maxQuestions }}min</v-chip> (depending on your english proficiency) </p>
 
               You can stop and come back whenever you want to resume the evaluations.
             </div>
