@@ -76,11 +76,11 @@ function log(event) {
               </v-select>
             </v-col>
             <v-col cols="12" class="px-0">
-              Order your preferences:
+              Drag and move to order your preferences:
               <div class="flex-grow-1 py-2">
                   <vue-draggable-next :list="selectedTopics" @change="log">
                     <template v-for="(topic, i) in selectedTopics" :key="i">
-                      <v-chip variant="outlined" size="large" class="mx-1">
+                      <v-chip variant="outlined" size="large" class="mx-1" :style="{ 'cursor': 'pointer' }">
                       {{ i + 1 }}.
                       {{ topic }}
                       </v-chip>

@@ -12,13 +12,13 @@ import { AppContentLayoutNav, ContentWidth, FooterType, NavbarType } from '@layo
 
 export const { themeConfig, layoutConfig } = defineThemeConfig({
   app: {
-    title: 'Retaqg',
+    title: 'AQG Experiment',
     logo: h('div', { innerHTML: logo, class: 'text-primary', style: 'line-height:0' }),
     contentWidth: ContentWidth.Boxed,
     contentLayoutNav: AppContentLayoutNav.Vertical,
     overlayNavFromBreakpoint: breakpointsVuetify.md,
     enableI18n: false,
-    theme: 'light',
+    theme: 'dark',
     isRtl: false,
     skin: Skins.Default,
     routeTransition: RouteTransitions.Fade,

@@ -20,12 +20,7 @@ const next = () => {
   }).catch( e => { console.log(e); loading.value  = false })
 }
 
-const tickLabelsEnglishProficiency = ref({
-  0: 'Beginner',
-  1: 'Intermediate',
-  2: 'Proficient',
-  3: 'Native',
-})
+const tickLabelsEnglishProficiency = ref({ 0: 'Beginner', 1: '', 2: 'Intermediate', 3: '', 4: 'Proficient', 5: '', 6: 'Native' })
 
 </script>
 
@@ -50,7 +45,7 @@ const tickLabelsEnglishProficiency = ref({
                 <v-slider
                   v-model="userProfile.english_proficiency"
                   :ticks="tickLabelsEnglishProficiency"
-                  :max="3"
+                  :max="6"
                   step="1"
                   show-ticks="always"
                   tick-size="4"

@@ -7,12 +7,18 @@ import axios from '@axios'
 import { isEmpty } from '@core/utils/index'
 import { useRoute } from 'vue-router'
 import { useDisplay } from 'vuetify'
+import { useContextStore } from '@/stores/context'
 
 const route = useRoute()
 const question = ref()
 const loading = ref(false)
 
+const autoConfidence = ref(0)
+
 const { mobile } = useDisplay()
+
+const contextStore = useContextStore()
+
 
 const getQuestionToEvaluate = () => {
   loading.value = true
@@ -20,6 +26,13 @@ const getQuestionToEvaluate = () => {
   axios.get(`question/detail/${route.params.id}`).then(response => {
     question.value = response.data
     loading.value = false
+    //  check if the paragraph is the same as the last one
+    if (contextStore.getLastContext() == question.value.paragraph.text) {
+      autoConfidence.value = contextStore.getLastConfidence()
+    } else {
+      autoConfidence.value = 0
+    }
+    contextStore.setLastContext(question.value.paragraph.text)
   })
 }
 
@@ -79,7 +92,7 @@ onMounted(() => {
             title="Evaluation ✍️"
             fluid
           >
-          <QuestionEvaluation v-if="!isEmpty(question)" :question="question"></QuestionEvaluation>
+          <QuestionEvaluation v-if="!isEmpty(question)" :question="question" :confidence="autoConfidence"></QuestionEvaluation>
 
           </VCard>
         </VCol>

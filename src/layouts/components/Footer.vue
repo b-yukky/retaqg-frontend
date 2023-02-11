@@ -14,9 +14,9 @@
     <!-- 👉 Footer: right content -->
     <span class="d-md-flex gap-x-4 text-primary d-none">
       <a
-        href=""
+        href="mailto:qa@limu.ait.kyushu-u.ac.jp"
         target="noopener noreferrer"
-      >Contact</a>
+      >An issue? Contact here</a>
     </span>
   </div>
 </template>
