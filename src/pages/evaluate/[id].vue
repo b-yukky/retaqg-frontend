@@ -38,7 +38,7 @@ const getQuestionToEvaluate = () => {
 
 const getTextAreaRowsNumber = computed(() => {
   if (question.value.paragraph)
-    return Math.floor(question.value.paragraph.length / 100)
+    return Math.max(Math.floor(question.value.paragraph.length / 70), mobile.value? 20 : 7)
 })
 
 onMounted(() => {
@@ -53,7 +53,7 @@ onMounted(() => {
   <div class="d-flex">
     <div class="flex-grow-1">
       <VRow>
-        <VCol cols="12">
+        <VCol cols="12" class="px-0 py-2">
           <VCard 
             fluid
             >
@@ -77,7 +77,7 @@ onMounted(() => {
           </VCard>
         </VCol>
 
-        <VCol cols="12">
+        <VCol cols="12" class="px-0 py-2">
           <VCard 
             title="Question ❓"
             fluid
@@ -87,7 +87,7 @@ onMounted(() => {
           </VCard>
         </VCol>
 
-        <VCol cols="12">
+        <VCol cols="12" class="px-0 py-2">
           <VCard 
             title="Evaluation ✍️"
             fluid
@@ -96,7 +96,7 @@ onMounted(() => {
 
           </VCard>
         </VCol>
-        <VCol v-if="mobile" cols="12">
+        <VCol v-if="mobile" cols="12" class="px-0 py-2">
           <EvaluationSatistics></EvaluationSatistics>
         </VCol>
       </VRow>

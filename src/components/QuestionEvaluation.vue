@@ -5,6 +5,8 @@ import { Evaluation } from '@/types'
 import api from '@axios'
 import { isNullOrUndefined } from '@core/utils/index'
 import { useContextStore } from '@/stores/context'
+import { useDisplay } from 'vuetify'
+const { mobile } = useDisplay()
 
 const props = defineProps(['question', 'confidence'])
 const contextStore = useContextStore()
@@ -73,7 +75,7 @@ const sendEvaluation = () => {
       ></v-progress-linear>
       
       <div v-if="!isNullOrUndefined(questionEvaluation)" class="d-flex flex-column">
-        <div class="d-flex ma-3">
+        <div class="ma-3" :class="[ mobile ? '' :'d-flex']">
           <div class="align-self-center">
             <v-tooltip :text="confidenceTooltip">
               <template v-slot:activator="{ props }">
@@ -93,6 +95,7 @@ const sendEvaluation = () => {
               color="warning"
             >
             </v-slider>
+            
           </div>
         </div>
         <div class="d-flex ma-3">
@@ -126,7 +129,7 @@ const sendEvaluation = () => {
               </v-radio-group>
             </div>
         </div>
-        <div class="d-flex ma-3">
+        <div class="ma-3" :class="[ mobile ? '' :'d-flex']">
           <div class="align-self-center">
             <v-tooltip :text="relevanceTooltip">
               <template v-slot:activator="{ props }">
@@ -149,7 +152,7 @@ const sendEvaluation = () => {
           </div>
         </div>
 
-        <div class="d-flex ma-3">
+        <div class="ma-3" :class="[ mobile ? '' :'d-flex']">
           <div class="align-self-center">
             <v-tooltip :text="difficultyTooltip">
               <template v-slot:activator="{ props }">
@@ -172,7 +175,7 @@ const sendEvaluation = () => {
           </div>
         </div>
 
-        <div class="d-flex ma-3">
+        <div class="ma-3" :class="[ mobile ? '' :'d-flex']">
           <div class="align-self-center">
             <v-tooltip :text="choicesTooltip">
               <template v-slot:activator="{ props }">
@@ -210,3 +213,11 @@ const sendEvaluation = () => {
       </div>
   </div>
 </template>
+
+<style scoped>
+@media only screen and (max-width: 600px) {
+  .v-input {
+    font-size: 0.55em;
+  }
+}
+</style>
