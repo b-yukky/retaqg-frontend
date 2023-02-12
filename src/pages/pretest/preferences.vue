@@ -23,7 +23,7 @@ const next = () => {
 }
 
 const limitSelectedTopics = () => {
-  if (selectedTopics.value.length > 2) {
+  if (selectedTopics.value.length > 10) {
     selectedTopics.value.pop()
   }
 }
