@@ -22,12 +22,11 @@ const next = () => {
   }).catch( e => { console.log(e); loading.value  = false })
 }
 
-const tickLabelsEnglishProficiency = ref({
-  0: 'Beginner',
-  1: 'Intermediate',
-  2: 'Proficient',
-  3: 'Native',
-})
+const limitSelectedTopics = () => {
+  if (selectedTopics.value.length > 3) {
+    selectedTopics.value.pop()
+  }
+}
 
 onMounted(() => {
   loading.value = true
@@ -71,6 +70,7 @@ function log(event) {
                 hint="Pick your prefered topics"
                 persistent-hint
                 @update="log"
+                @update:model-value="limitSelectedTopics"
               >
 
               </v-select>
