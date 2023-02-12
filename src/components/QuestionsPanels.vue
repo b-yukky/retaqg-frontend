@@ -17,6 +17,8 @@ const createChoices = (question: Question) => {
     }
   }
 
+const displayAnswer = ref(false)
+
 onMounted(() => {
   createChoices(props.questions[0])
   openedPanels.value = [0]
@@ -36,6 +38,7 @@ watch(props, (newQ) => {
         multiple 
         v-model="openedPanels"
         @update="createChoices(props.questions[0])"
+        :readonly="true"
         >
         <VExpansionPanel
           v-for="question in props.questions"
@@ -45,9 +48,22 @@ watch(props, (newQ) => {
           <VExpansionPanelTitle @click="createChoices(question)"> 
             <v-row>
               <v-col>
-                {{ question.text }}
+                <div>
+                  <span class="mr-4"> {{ question.text }} </span>
+                  <VBtn
+                  v-if="props.evalmode"
+                  color="success"
+                  size="small"
+                  :variant="displayAnswer ? 'text' : 'tonal'"
+                  :append-icon="displayAnswer ? 'mdi-eye' : 'mdi-eye-off'"
+                  @click="displayAnswer = !displayAnswer"
+                  class="my-1"
+                  >
+                answer
+                </VBtn>
+                </div>
               </v-col>
-              <v-col>
+              <v-col v-if="!props.evalmode">
                 <VChip 
                   v-if="!props.evalmode"
                   class="ml-2"
@@ -68,7 +84,7 @@ watch(props, (newQ) => {
           </VExpansionPanelTitle>
           <VExpansionPanelText>
             <VList>
-              <VListItem :class="choice.is_answer == true ? 'green' : ''" v-for="choice in question.choices" 
+              <VListItem :class="choice.is_answer == true && displayAnswer ? 'green' : ''" v-for="choice in question.choices" 
                 :key="choice.text" 
                 :value="choice.text">
                 <template #prepend>
