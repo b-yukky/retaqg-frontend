@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import navItems from '@/navigation/horizontal'
 import { themeConfig } from '@themeConfig'
+import { useDisplay } from 'vuetify'
 
 // Composable
 import { useSkins } from '@core/composable/useSkins'
@@ -15,6 +16,7 @@ import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 
 const { appRouteTransition } = useThemeConfig()
 const { layoutAttrs, injectSkinClasses } = useSkins()
+const { mobile } = useDisplay()
 
 // ℹ️ This will inject classes in body tag for accurate styling
 injectSkinClasses()
@@ -39,7 +41,7 @@ injectSkinClasses()
       </RouterLink>
 
       <VSpacer />
-      <UserProfile />
+      <UserProfile v-if="!mobile" />
       <NavbarThemeSwitcher class="me-2 ml-4" />
     </template>
 

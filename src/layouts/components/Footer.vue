@@ -1,10 +1,16 @@
+<script setup>
+import { useDisplay } from 'vuetify'
+const { mobile } = useDisplay()
+</script>
+
 <template>
   <div class="h-100 d-flex align-center justify-space-between">
     <!-- 👉 Footer: left content -->
-    <span class="d-flex align-center">
+    <span class="d-flex align-center" :class="{ 'sm-text': mobile }">
       &copy;
       {{ new Date().getFullYear() }}
       - Kyushu University 
+      <vspacer v-if="mobile"></vspacer>
       - <a
         href="https://limu.ait.kyushu-u.ac.jp/e/index.html"
         target="_blank"
@@ -22,3 +28,10 @@
     </span>
   </div>
 </template>
+
+<style scoped>
+.sm-text {
+  font-size: 0.25em !important;
+}
+
+</style>

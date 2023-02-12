@@ -217,7 +217,7 @@ const sendEvaluation = () => {
 <style scoped>
 @media only screen and (max-width: 600px) {
   .v-input {
-    font-size: 0.55em;
+    font-size: 0.5em;
   }
 }
 </style>
