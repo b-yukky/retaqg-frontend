@@ -54,9 +54,9 @@ onMounted(() => {
         >
           <div>
             <p class="text-subtitle-1 text-high-emphasis mb-0">
-            This research study aims at evaluating the performance of AI-generated questions on some reading material for self-practice learning.<br>
+            This research study aims at evaluating the performance and quality of AI-generated questions on reading material for self-practice learning.<br>
             In this experiment, you will have to evaluate a set of AI-generated questions on different text paragraphs.<br>
-            For each question, there are multiple choices that are generated. The correct answer, determined by the AI, is highlighted in green.
+            For each question, there are multiple choices that are generated. The supposedly correct answer, determined by the AI, is colored in green.
             <br>
             You will first need to <strong>read carefully</strong> the given context paragraph, and then rate the associated question by the following metrics:
             </p>
@@ -86,7 +86,7 @@ onMounted(() => {
               </v-list-item>
               <v-list-item title="Choices">
                 <v-list-item-subtitle>
-                  Rate how relevant are the given choices as potential answers. Choices should be distinct from one another, and the only correct answer should be the one indicated in green. If this is not respected, ratings should be lower than 4 (confused or terrible). An Ideal situation would be if the given choices are all distinct, coherent, understandable and challenging. <br>
+                  Rate how relevant are the proposed choices. Choices should be distinct from one another, and the only correct answer should be the one indicated in green. If this is not respected, ratings should be lower than 4 (confused or terrible). An Ideal situation would be if the given choices are all distinct, coherent, understandable and challenging. <br>
                 </v-list-item-subtitle>
               </v-list-item>
             </v-list>
