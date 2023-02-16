@@ -54,9 +54,9 @@ function progress(completed: number, max:number) {
 
       <template v-slot:item.english_proficiency="{ item }">
         <v-chip v-if="item.raw.english_proficiency == 0" label color="success">Beginner</v-chip>
-        <v-chip v-else-if="item.raw.english_proficiency == 1" label color="info">Intermediate</v-chip>
-        <v-chip v-else-if="item.raw.english_proficiency == 2" label color="warning">Proficient</v-chip>
-        <v-chip v-else-if="item.raw.english_proficiency == 3" label color="error">Native</v-chip>
+        <v-chip v-else-if="item.raw.english_proficiency == 2" label color="info">Intermediate</v-chip>
+        <v-chip v-else-if="item.raw.english_proficiency == 4" label color="warning">Proficient</v-chip>
+        <v-chip v-else-if="item.raw.english_proficiency == 6" label color="error">Native</v-chip>
       </template>
 
       <template v-slot:item.completed_questions="{ item }">
